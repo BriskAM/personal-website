@@ -1,0 +1,100 @@
+{
+  "name": "Akshit Mehta",
+  "tagline": "Hi! I build things.",
+  "subtitle": "I like solving hard problems and automating everything around them.",
+  "workingOn": [
+    {
+      "title": "MAIT & IIT Madras",
+      "role": "Student",
+      "description": "B.Tech in IT (CGPA 9.31) & B.S. in Data Science (CGPA 9.14). Expected 2027.",
+      "href": "https://github.com/briskam",
+      "icon": "graduation",
+      "color": "amber"
+    },
+    {
+      "title": "LLM-Powered Tools",
+      "role": "Builder",
+      "description": "Building automated systems with FastAPI, LangGraph, and multi-model AI architectures.",
+      "href": "https://github.com/briskam",
+      "icon": "robot",
+      "color": "emerald"
+    }
+  ],
+  "social": [
+    {
+      "name": "Email",
+      "href": "mailto:akshitmehta0136@gmail.com",
+      "icon": "email",
+      "color": "blue"
+    },
+    {
+      "name": "GitHub",
+      "href": "https://github.com/briskam",
+      "icon": "github",
+      "color": "gray"
+    },
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/akshit-mehta-638688326",
+      "icon": "linkedin",
+      "color": "sky"
+    }
+  ],
+  "work": [
+    {
+      "title": "Backend Developer",
+      "company": "OTET Infosystems",
+      "description": "Led Laravel to Django migration, built RESTful APIs with DRF, optimized queries for 30% faster response times.",
+      "year": "2025"
+    }
+  ],
+  "projects": [
+    {
+      "title": "TDS Quiz Solver",
+      "description": "LLM-powered quiz agent with LangGraph, multi-model support, sandboxed execution.",
+      "href": "https://github.com/23f3001694/llm-tools",
+      "live": "https://amehtaaaaaa-llm-tools.hf.space/healthz"
+    },
+    {
+      "title": "Clip-Rewrite",
+      "description": "Temporary clipboard sharing with syntax highlighting for 13+ languages.",
+      "href": "https://github.com/BriskAM/clip-rewrite",
+      "live": "http://clip.briskdev.xyz"
+    },
+    {
+      "title": "Auto GitHub Pages Deploy",
+      "description": "LLM-powered web app generator with dual-LLM architecture and 99.9%+ uptime.",
+      "href": "https://github.com/23f3001694/tds-p-1",
+      "live": "https://tds-p-1.onrender.com/"
+    }
+  ],
+  "skills": {
+    "languages": "Python, Bash, Java, SQL, JavaScript",
+    "frameworks": "FastAPI, Django, Flask, Vue.js, SQLAlchemy",
+    "tools": "Docker, Git, Linux, Postman, Jupyter"
+  },
+  "achievements": [
+    {
+      "icon": "trophy",
+      "text": "Python Developer (JetBrains) · 300-day streak"
+    },
+    {
+      "icon": "star",
+      "text": "50+ stars on GitHub · Hacktoberfest contributor"
+    },
+    {
+      "icon": "target",
+      "text": "IIT Madras Paradox'24 finalist"
+    }
+  ],
+  "positions": [
+    {
+      "title": "DevOps Head",
+      "organization": "Google Developers Group MAIT"
+    },
+    {
+      "title": "Member",
+      "organization": "IOSD MAIT"
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
+import Icon from '../components/Icon.vue';
+import data from '../content/data.json';
+
+const colorClasses: Record<string, { bg: string; title: string; text: string; role: string }> = {
+	amber: {
+		bg: 'from-amber-800 to-amber-900',
+		title: 'text-white',
+		text: 'text-amber-100/70',
+		role: 'text-amber-300/80'
+	},
+	emerald: {
+		bg: 'from-emerald-800 to-emerald-900',
+		title: 'text-white',
+		text: 'text-emerald-100/70',
+		role: 'text-emerald-300/80'
+	},
+	blue: {
+		bg: 'from-blue-800 to-blue-900',
+		title: 'text-white',
+		text: 'text-blue-100'
+	},
+	gray: {
+		bg: 'from-gray-700 to-gray-800',
+		title: 'text-white',
+		text: 'text-gray-100'
+	},
+	sky: {
+		bg: 'from-sky-800 to-sky-900',
+		title: 'text-white',
+		text: 'text-sky-100'
+	},
+	orange: {
+		bg: 'from-orange-800 to-orange-900',
+		title: 'text-orange-100',
+		text: 'text-orange-200/60',
+		role: 'text-orange-300/60'
+	},
+	violet: {
+		bg: 'from-violet-800 to-violet-900',
+		title: 'text-violet-100',
+		text: 'text-violet-200/60',
+		role: 'text-violet-300/60'
+	},
+	slate: {
+		bg: 'from-slate-700 to-slate-800',
+		title: 'text-slate-200',
+		text: 'text-slate-400'
+	}
+};
+---
+
+<Layout title={data.name}>
+	<div class="max-w-3xl mx-auto space-y-20">
+		<!-- Hero Section -->
+		<section class="pt-8">
+			<Header client:load />
+		</section>
+
+		<!-- What I'm working on -->
+		<section>
+			<div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-start">
+				<h2 class="text-xl font-medium text-white sticky top-8">What I'm working on</h2>
+				<div class="space-y-4">
+					{data.workingOn.map((item) => {
+						const colors = colorClasses[item.color] || colorClasses.gray;
+						return (
+							<a href={item.href} target="_blank" rel="noopener noreferrer" class={`block bg-gradient-to-br ${colors.bg} p-5 hover:scale-[1.02] transition-transform`}>
+								<div class="flex items-center gap-3 mb-2">
+									<Icon name={item.icon} size={20} color="currentColor" client:load />
+									<span class={`font-semibold ${colors.title}`}>{item.title}</span>
+									<span class={`text-sm ${colors.role}`}>· {item.role}</span>
+								</div>
+								<p class={`text-sm ${colors.text}`}>{item.description}</p>
+							</a>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+
+		<!-- Current Positions -->
+		<section>
+			<div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-start">
+				<h2 class="text-xl font-medium text-white sticky top-8">Current Positions</h2>
+				<div class="space-y-4">
+					<div class={`bg-gradient-to-br ${colorClasses.blue.bg} p-5`}>
+						<div class="flex items-center gap-3 mb-2">
+							<Icon name="code" size={20} color="currentColor" client:load />
+							<span class="font-semibold text-white">DevOps Head</span>
+						</div>
+						<p class="text-sm text-blue-100">Google Developers Group MAIT</p>
+					</div>
+					<div class={`bg-gradient-to-br ${colorClasses.emerald.bg} p-5`}>
+						<div class="flex items-center gap-3 mb-2">
+							<Icon name="users" size={20} color="currentColor" client:load />
+							<span class="font-semibold text-white">Member</span>
+						</div>
+						<p class="text-sm text-emerald-100">IOSD MAIT</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Reach out -->
+		<section>
+			<div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-start">
+				<h2 class="text-xl font-medium text-white sticky top-8">Reach out!</h2>
+				<div class="flex gap-4 flex-wrap">
+					{data.social.map((item) => {
+						const colors = colorClasses[item.color] || colorClasses.gray;
+						if (item.icon === 'github') {
+							return (
+								<div class="relative w-28 h-24 group">
+									<a href={item.href} target="_blank" rel="noopener noreferrer" class={`flex flex-col items-center justify-center bg-gradient-to-br ${colors.bg} p-5 w-full h-full hover:scale-105 transition-transform`} style="clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);">
+										<Icon name={item.icon} size={24} color="currentColor" class="mb-2" client:load />
+										<span class={`text-sm ${colors.text}`}>{item.name}</span>
+									</a>
+									<a href="https://github.com/23f3001694" target="_blank" rel="noopener noreferrer" class="absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-transparent border-b-[20px] border-b-gray-600 hover:border-b-gray-400 transition-colors" title="Second GitHub" />
+								</div>
+							);
+						}
+						return (
+							<a href={item.href} target={item.href.startsWith('mailto') ? undefined : '_blank'} rel={item.href.startsWith('mailto') ? undefined : 'noopener noreferrer'} class={`flex flex-col items-center justify-center bg-gradient-to-br ${colors.bg} p-5 w-28 h-24 hover:scale-105 transition-transform`}>
+								<Icon name={item.icon} size={24} color="currentColor" class="mb-2" client:load />
+								<span class={`text-sm ${colors.text}`}>{item.name}</span>
+							</a>
+						);
+					})}
+				</div>
+			</div>
+		</section>
+
+		<!-- Past doings -->
+		<section>
+			<div class="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-start">
+				<h2 class="text-xl font-medium text-white sticky top-8">Past doings</h2>
+				<div class="space-y-4">
+					<!-- Work -->
+					<div class={`bg-gradient-to-br ${colorClasses.orange.bg} p-5`}>
+						<div class="flex items-center gap-3 mb-4">
+							<Icon name="briefcase" size={20} color="currentColor" client:load />
+							<span class="font-semibold text-white">Work</span>
+						</div>
+						<div class="space-y-4">
+							{data.work.map((item) => (
+								<div class="flex justify-between items-start">
+									<div>
+										<p class={colorClasses.orange.title + ' font-medium'}>{item.title} · {item.company}</p>
+										<p class={colorClasses.orange.text + ' text-sm mt-1'}>{item.description}</p>
+									</div>
+									<span class={colorClasses.orange.role + ' text-sm font-mono shrink-0 ml-4'}>{item.year}</span>
+								</div>
+							))}
+						</div>
+					</div>
+
+					<!-- Projects -->
+					<div class={`bg-gradient-to-br ${colorClasses.violet.bg} p-5`}>
+						<div class="flex items-center gap-3 mb-4">
+							<Icon name="rocket" size={20} color="currentColor" client:load />
+							<span class="font-semibold text-white">Projects</span>
+						</div>
+						<div class="space-y-4">
+							{data.projects.map((item) => (
+								<div class="hover:bg-white/5 -mx-2 px-2 py-1 transition-colors">
+									<div class="flex justify-between items-start">
+										<div>
+											<p class={colorClasses.violet.title + ' font-medium'}>{item.title}</p>
+											<p class={colorClasses.violet.text + ' text-sm mt-1'}>{item.description}</p>
+											<div class="flex gap-3 mt-2">
+												<a href={item.href} target="_blank" rel="noopener noreferrer" class="text-xs text-violet-300 hover:text-violet-100 transition-colors">Code ↗</a>
+												{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="text-xs text-violet-300 hover:text-violet-100 transition-colors">Live ↗</a>}
+											</div>
+										</div>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+
+					<!-- Skills & Achievements -->
+					<div class={`bg-gradient-to-br ${colorClasses.slate.bg} p-5`}>
+						<div class="flex items-center gap-3 mb-4">
+							<Icon name="zap" size={20} color="currentColor" client:load />
+							<span class="font-semibold text-white">Skills & Achievements</span>
+						</div>
+						<div class="space-y-3 text-sm">
+							<p class={colorClasses.slate.title}><span class={colorClasses.slate.text}>Languages:</span> {data.skills.languages}</p>
+							<p class={colorClasses.slate.title}><span class={colorClasses.slate.text}>Frameworks:</span> {data.skills.frameworks}</p>
+							<p class={colorClasses.slate.title}><span class={colorClasses.slate.text}>Tools:</span> {data.skills.tools}</p>
+							<div class="pt-2 border-t border-slate-700/50 mt-3 space-y-2">
+								{data.achievements.map((item) => (
+									<p class="text-slate-300 flex items-center gap-2">
+										<Icon name={item.icon} size={16} color="currentColor" client:load />
+										{item.text}
+									</p>
+								))}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<Footer />
+	</div>
+</Layout>
