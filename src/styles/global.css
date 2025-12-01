@@ -1,16 +1,26 @@
 @import "tailwindcss";
 
+/* Custom Cursor - hide default on desktop */
+.custom-cursor-enabled {
+  cursor: none;
+}
+
+.custom-cursor-enabled a,
+.custom-cursor-enabled button {
+  cursor: none;
+}
+
 /* Layout */
 .page-container {
-  @apply max-w-3xl mx-auto space-y-20;
+  @apply max-w-3xl mx-auto space-y-12 sm:space-y-16 md:space-y-20;
 }
 
 .section-grid {
-  @apply grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-start;
+  @apply grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-8 items-start;
 }
 
 .section-title {
-  @apply text-xl font-medium text-white sticky top-8;
+  @apply text-lg md:text-xl font-medium text-white md:sticky md:top-8 mb-4 md:mb-0;
 }
 
 .cards-container {
@@ -40,11 +50,11 @@
 
 /* Social Cards */
 .social-card {
-  @apply flex flex-col items-center justify-center bg-gradient-to-br p-5 w-28 h-24 hover:scale-105 transition-transform;
+  @apply flex flex-col items-center justify-center bg-gradient-to-br p-4 sm:p-5 w-24 h-20 sm:w-28 sm:h-24 hover:scale-105 transition-transform text-center;
 }
 
 .social-cards {
-  @apply flex gap-4 flex-wrap;
+  @apply flex gap-3 sm:gap-4 flex-wrap;
 }
 
 /* Color Variants - Amber */

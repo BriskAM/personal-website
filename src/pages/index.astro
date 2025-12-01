@@ -63,7 +63,7 @@ import data from '../content/data.json';
 					{data.social.map((item) => {
 						if (item.icon === 'github') {
 							return (
-								<div class="relative w-28 h-24 group">
+								<div class="relative w-24 h-20 sm:w-28 sm:h-24 group">
 									<a href={item.href} target="_blank" rel="noopener noreferrer" class={`social-card card-${item.color} github-card-cut`}>
 										<Icon name={item.icon} size={24} color="currentColor" class="mb-2" client:load />
 										<span class={`text-sm text-${item.color}-desc`}>{item.name}</span>
@@ -157,5 +157,4 @@ import data from '../content/data.json';
 
 		<Footer />
 	</div>
-</Layout>
 </Layout>
