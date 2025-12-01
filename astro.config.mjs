@@ -8,6 +8,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [vue()],
 
+  devToolbar: {
+    enabled: false
+  },
+
   vite: {
     plugins: [tailwindcss()]
   }

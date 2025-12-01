@@ -8,6 +8,7 @@ import { onMounted, onBeforeUnmount, ref } from 'vue';
 const canvas = ref<HTMLCanvasElement | null>(null);
 const cellSize = 7; // Increased grid size
 const cellColor = '#333333'; // Darker cell color for dark mode
+const maxActiveCells = 800; // Hard limit on active cells to prevent clustering
 let ctx: CanvasRenderingContext2D | null = null;
 let animationId: number;
 let cols = 0;
@@ -50,8 +51,19 @@ const draw = () => {
   }
 };
 
+const countActiveCells = (g: number[][]): number => {
+  let count = 0;
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      count += g[i][j];
+    }
+  }
+  return count;
+};
+
 const computeNextGen = () => {
   const nextGrid = grid.map(arr => [...arr]);
+  let newCells: [number, number][] = [];
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -70,9 +82,29 @@ const computeNextGen = () => {
 
       if (state === 0 && neighbors === 3) {
         nextGrid[i][j] = 1;
+        newCells.push([i, j]);
       } else if (state === 1 && (neighbors < 2 || neighbors > 3)) {
         nextGrid[i][j] = 0;
       }
+    }
+  }
+
+  const activeCount = countActiveCells(nextGrid);
+  if (activeCount > maxActiveCells) {
+    // Randomly remove excess cells
+    const activeCells: [number, number][] = [];
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        if (nextGrid[i][j] === 1) activeCells.push([i, j]);
+      }
+    }
+    for (let i = activeCells.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [activeCells[i], activeCells[j]] = [activeCells[j], activeCells[i]];
+    }
+    const toRemove = activeCells.slice(maxActiveCells);
+    for (const [x, y] of toRemove) {
+      nextGrid[x][y] = 0;
     }
   }
 
@@ -82,6 +114,9 @@ const computeNextGen = () => {
 const handleMouseMove = (e: MouseEvent) => {
   const x = Math.floor(e.clientX / cellSize);
   const y = Math.floor(e.clientY / cellSize);
+  
+  // Only add cells if under the limit
+  if (countActiveCells(grid) >= maxActiveCells) return;
   
   if (x >= 0 && x < cols && y >= 0 && y < rows) {
     for (let i = -1; i <= 1; i++) {

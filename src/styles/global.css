@@ -1,1 +1,162 @@
 @import "tailwindcss";
+
+/* Layout */
+.page-container {
+  @apply max-w-3xl mx-auto space-y-20;
+}
+
+.section-grid {
+  @apply grid grid-cols-1 md:grid-cols-[200px_1fr] gap-8 items-start;
+}
+
+.section-title {
+  @apply text-xl font-medium text-white sticky top-8;
+}
+
+.cards-container {
+  @apply space-y-4;
+}
+
+/* Cards */
+.card {
+  @apply bg-gradient-to-br p-5;
+}
+
+.card-hover {
+  @apply hover:scale-[1.02] transition-transform;
+}
+
+.card-header {
+  @apply flex items-center gap-3 mb-4;
+}
+
+.card-header-sm {
+  @apply flex items-center gap-3 mb-2;
+}
+
+.card-title {
+  @apply font-semibold text-white;
+}
+
+/* Social Cards */
+.social-card {
+  @apply flex flex-col items-center justify-center bg-gradient-to-br p-5 w-28 h-24 hover:scale-105 transition-transform;
+}
+
+.social-cards {
+  @apply flex gap-4 flex-wrap;
+}
+
+/* Color Variants - Amber */
+.card-amber {
+  @apply from-amber-800 to-amber-900;
+}
+.text-amber-title {
+  @apply text-white;
+}
+.text-amber-desc {
+  @apply text-amber-100/70;
+}
+.text-amber-role {
+  @apply text-amber-300/80;
+}
+
+/* Color Variants - Emerald */
+.card-emerald {
+  @apply from-emerald-800 to-emerald-900;
+}
+.text-emerald-title {
+  @apply text-white;
+}
+.text-emerald-desc {
+  @apply text-emerald-100/70;
+}
+.text-emerald-role {
+  @apply text-emerald-300/80;
+}
+
+/* Color Variants - Blue */
+.card-blue {
+  @apply from-blue-800 to-blue-900;
+}
+.text-blue-title {
+  @apply text-white;
+}
+.text-blue-desc {
+  @apply text-blue-100;
+}
+
+/* Color Variants - Gray */
+.card-gray {
+  @apply from-gray-700 to-gray-800;
+}
+.text-gray-title {
+  @apply text-white;
+}
+.text-gray-desc {
+  @apply text-gray-100;
+}
+
+/* Color Variants - Sky */
+.card-sky {
+  @apply from-sky-800 to-sky-900;
+}
+.text-sky-title {
+  @apply text-white;
+}
+.text-sky-desc {
+  @apply text-sky-100;
+}
+
+/* Color Variants - Orange */
+.card-orange {
+  @apply from-orange-800 to-orange-900;
+}
+.text-orange-title {
+  @apply text-orange-100;
+}
+.text-orange-desc {
+  @apply text-orange-200/60;
+}
+.text-orange-role {
+  @apply text-orange-300/60;
+}
+
+/* Color Variants - Violet */
+.card-violet {
+  @apply from-violet-800 to-violet-900;
+}
+.text-violet-title {
+  @apply text-violet-100;
+}
+.text-violet-desc {
+  @apply text-violet-200/60;
+}
+.text-violet-role {
+  @apply text-violet-300/60;
+}
+
+/* Color Variants - Slate */
+.card-slate {
+  @apply from-slate-700 to-slate-800;
+}
+.text-slate-title {
+  @apply text-slate-200;
+}
+.text-slate-desc {
+  @apply text-slate-400;
+}
+
+/* Project Links */
+.project-link {
+  @apply text-xs text-violet-300 hover:text-violet-100 transition-colors;
+}
+
+/* GitHub Cut Corner */
+.github-card-cut {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.github-corner {
+  @apply absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-transparent border-b-[20px] border-b-gray-600 hover:border-b-gray-400 transition-colors;
+}
