@@ -14,10 +14,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/personal-website
+      IMAGE_NAME: ghcr.io/${{ github.repository }}
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
+
+      - name: Set image name to lowercase
+        run: echo "IMAGE_NAME=${IMAGE_NAME,,}" >> $GITHUB_ENV
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
