@@ -1,8 +1,8 @@
 services:
   web:
-    build: .
+    image: ghcr.io/briskam/personal-website:latest
     ports:
-      - "4321:80"
+      - "80:80"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost/"]
