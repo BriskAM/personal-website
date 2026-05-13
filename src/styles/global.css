@@ -95,6 +95,9 @@
 .text-blue-desc {
   @apply text-blue-100;
 }
+.text-blue-role {
+  @apply text-blue-300/80;
+}
 
 /* Color Variants - Gray */
 .card-gray {

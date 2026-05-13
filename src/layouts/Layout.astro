@@ -2,26 +2,90 @@
 import "../styles/global.css";
 import GameOfLife from "../components/GameOfLife.vue";
 import CustomCursor from "../components/CustomCursor.vue";
+import data from "../content/data.json";
 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+const description = "Akshit Mehta is a backend-focused software developer and data science student building APIs, automation tools, AI integrations, and deployment workflows.";
+const canonicalUrl = "https://amehta.space/";
+const sameAs = [
+	"https://github.com/BriskAM",
+	"https://github.com/23f3001694",
+	"https://www.linkedin.com/in/akshit-mehta2005",
+	"https://briskam.github.io/resume/"
+];
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Person",
+	name: data.name,
+	url: canonicalUrl,
+	email: "mailto:akshit.mehta.work@gmail.com",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Delhi",
+		addressCountry: "IN"
+	},
+	jobTitle: "Backend Developer",
+	description,
+	image: "https://amehta.space/og-image.svg",
+	sameAs,
+	alumniOf: [
+		{
+			"@type": "CollegeOrUniversity",
+			name: "Maharaja Agrasen Institute of Technology"
+		},
+		{
+			"@type": "CollegeOrUniversity",
+			name: "Indian Institute of Technology Madras"
+		}
+	],
+	knowsAbout: [
+		"Python",
+		"Java",
+		"FastAPI",
+		"Django REST Framework",
+		"SQL",
+		"GitHub Actions",
+		"Docker",
+		"Machine Learning",
+		"Data Science",
+		"LLM integrations"
+	]
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Akshit Mehta - Backend Developer & Data Science Student" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
 		<meta name="theme-color" content="#0a0a0a" />
-		<meta name="robots" content="noindex, nofollow" />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Akshit Mehta" />
+		<meta name="keywords" content="Akshit Mehta, backend developer, Python developer, FastAPI, Django REST Framework, data science, IIT Madras, MAIT, GitHub Actions, Kaggle, machine learning" />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="profile" />
+		<meta property="og:title" content="Akshit Mehta | Backend Developer" />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content="https://amehta.space/og-image.svg" />
+		<meta property="og:image:alt" content="Akshit Mehta - Backend Developer and Data Science Student" />
+		<meta property="og:site_name" content="Akshit Mehta" />
+		<meta property="profile:first_name" content="Akshit" />
+		<meta property="profile:last_name" content="Mehta" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Akshit Mehta | Backend Developer" />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="https://amehta.space/og-image.svg" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="apple-touch-icon" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

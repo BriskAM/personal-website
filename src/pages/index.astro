@@ -6,7 +6,7 @@ import Icon from '../components/Icon.vue';
 import data from '../content/data.json';
 ---
 
-<Layout title={data.name}>
+<Layout title={`${data.name} | Backend Developer`}>
 	<div class="page-container">
 		<!-- Hero Section -->
 		<section class="pt-8">
@@ -37,20 +37,50 @@ import data from '../content/data.json';
 			<div class="section-grid">
 				<h2 class="section-title">Current Positions</h2>
 				<div class="cards-container">
-					<div class="card card-blue">
-						<div class="card-header-sm">
-							<Icon name="code" size={20} color="currentColor" client:load />
-							<span class="card-title">DevOps Head</span>
+					{data.positions.map((item) => (
+						<div class={`card card-${item.color}`}>
+							<div class="card-header-sm">
+								<Icon name={item.icon} size={20} color="currentColor" client:load />
+								<span class="card-title">{item.title}</span>
+							</div>
+							<p class={`text-sm text-${item.color}-desc`}>{item.organization}</p>
 						</div>
-						<p class="text-sm text-blue-desc">Google Developers Group MAIT</p>
-					</div>
-					<div class="card card-emerald">
-						<div class="card-header-sm">
-							<Icon name="users" size={20} color="currentColor" client:load />
-							<span class="card-title">Member</span>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Education -->
+		<section>
+			<div class="section-grid">
+				<h2 class="section-title">Education</h2>
+				<div class="cards-container">
+					{data.education.map((item) => (
+						<div class={`card card-${item.color}`}>
+							<div class="card-header-sm">
+								<Icon name="graduation" size={20} color="currentColor" client:load />
+								<span class="card-title">{item.school}</span>
+							</div>
+							<p class={`text-sm text-${item.color}-desc`}>{item.detail}</p>
+							<p class={`text-sm text-${item.color}-role mt-2`}>{item.meta}</p>
 						</div>
-						<p class="text-sm text-emerald-desc">IOSD MAIT</p>
-					</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Resume -->
+		<section>
+			<div class="section-grid">
+				<h2 class="section-title">Resume</h2>
+				<div class="cards-container">
+					<a href="https://briskam.github.io/resume/" target="_blank" rel="noopener noreferrer" class="card card-emerald card-hover block">
+						<div class="card-header-sm">
+							<Icon name="file" size={20} color="currentColor" client:load />
+							<span class="card-title">Latest PDF</span>
+						</div>
+						<p class="text-sm text-emerald-desc">One-page resume with GitHub Actions publishing, version history, and downloadable PDF.</p>
+					</a>
 				</div>
 			</div>
 		</section>
@@ -83,10 +113,10 @@ import data from '../content/data.json';
 			</div>
 		</section>
 
-		<!-- Past doings -->
+		<!-- Experience & Projects -->
 		<section>
 			<div class="section-grid">
-				<h2 class="section-title">Past doings</h2>
+				<h2 class="section-title">Experience & Projects</h2>
 				<div class="cards-container">
 					<!-- Work -->
 					<div class="card card-orange">
