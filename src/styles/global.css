@@ -12,7 +12,7 @@
 
 /* Layout */
 .page-container {
-  @apply max-w-3xl mx-auto space-y-12 sm:space-y-16 md:space-y-20;
+  @apply max-w-4xl mx-auto space-y-12 sm:space-y-16 md:space-y-20;
 }
 
 .section-grid {
@@ -25,6 +25,55 @@
 
 .cards-container {
   @apply space-y-4;
+}
+
+/* Hero */
+.hero-section {
+  @apply pt-8 sm:pt-12;
+}
+
+.hero-kicker {
+  @apply text-sm font-medium text-emerald-300/80 mb-3;
+}
+
+.hero-title {
+  @apply text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white;
+}
+
+.hero-summary {
+  @apply mt-5 max-w-3xl text-base sm:text-lg text-gray-300 leading-relaxed;
+}
+
+.hero-actions {
+  @apply mt-6 flex flex-wrap gap-3;
+}
+
+.button {
+  @apply inline-flex min-h-10 items-center justify-center border border-white/15 bg-white/10 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/15;
+}
+
+.button-primary {
+  @apply border-emerald-300/60 bg-emerald-400 text-emerald-950 hover:bg-emerald-300;
+}
+
+.highlight-grid {
+  @apply mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3;
+}
+
+.highlight {
+  @apply border border-white/10 bg-white/[0.06] p-4;
+}
+
+.highlight-label {
+  @apply text-xs font-medium uppercase text-gray-500;
+}
+
+.highlight-value {
+  @apply mt-1 text-xl font-semibold text-white;
+}
+
+.highlight-detail {
+  @apply mt-1 text-sm text-gray-400;
 }
 
 /* Cards */
@@ -163,6 +212,38 @@
 /* Project Links */
 .project-link {
   @apply text-xs text-violet-300 hover:text-violet-100 transition-colors;
+}
+
+.project-link.blue {
+  @apply text-blue-200 hover:text-blue-50;
+}
+
+.project-card {
+  @apply flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between;
+}
+
+.project-card.compact {
+  @apply gap-3;
+}
+
+.project-stack {
+  @apply mt-1 text-xs font-medium text-violet-300/75;
+}
+
+.card-blue .project-stack {
+  @apply text-blue-200/80;
+}
+
+.project-actions {
+  @apply flex shrink-0 gap-3;
+}
+
+.skill-list {
+  @apply space-y-3 text-sm;
+}
+
+.achievement-list {
+  @apply space-y-3 text-sm;
 }
 
 /* GitHub Cut Corner */

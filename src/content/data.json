@@ -2,6 +2,26 @@
   "name": "Akshit Mehta",
   "tagline": "Backend developer and data science student.",
   "subtitle": "I build API-heavy systems, automation tools, and AI-assisted workflows.",
+  "summary": "Backend-focused software developer with internship experience migrating production systems, building REST APIs, and shipping AI/data tooling across FastAPI, Django, Docker, and GitHub Actions.",
+  "resumeUrl": "https://briskam.github.io/resume/",
+  "resumePdfUrl": "https://briskam.github.io/resume/akshit_mehta_resume.pdf",
+  "highlights": [
+    {
+      "label": "Internship",
+      "value": "OTET",
+      "detail": "Laravel to Django migration"
+    },
+    {
+      "label": "GitHub",
+      "value": "90+ stars",
+      "detail": "public repositories"
+    },
+    {
+      "label": "Academics",
+      "value": "9.33 / 9.05",
+      "detail": "MAIT and IITM CGPA"
+    }
+  ],
   "workingOn": [
     {
       "title": "MAIT & IIT Madras",
@@ -71,27 +91,31 @@
   "projects": [
     {
       "title": "TDS Quiz Solver",
-      "description": "LLM-powered quiz agent with LangGraph, multi-model support, and sandboxed execution.",
+      "description": "LLM-powered quiz agent with LangGraph, multi-model failover, Playwright extraction, sandboxed Python execution, and FastAPI endpoints.",
       "href": "https://github.com/23f3001694/llm-tools",
-      "live": "https://amehtaaaaaa-llm-tools.hf.space/healthz"
+      "live": "https://amehtaaaaaa-llm-tools.hf.space/healthz",
+      "stack": "FastAPI, LangGraph, Playwright, Docker"
     },
     {
       "title": "Clip-Rewrite",
-      "description": "Temporary clipboard sharing with syntax highlighting for 13+ languages.",
+      "description": "Temporary clipboard and file sharing service with syntax highlighting for 13+ languages, expiration, previews, and cleanup workflows.",
       "href": "https://github.com/BriskAM/clip-rewrite",
-      "live": "http://clip.briskdev.xyz"
+      "live": "http://clip.briskdev.xyz",
+      "stack": "FastAPI, SQLAlchemy, Jinja2, Pygments"
     },
     {
       "title": "Resume Publishing System",
       "description": "LaTeX resume pipeline with GitHub Actions, GitHub Pages, PDF version history, and optional Catbox mirroring.",
       "href": "https://github.com/BriskAM/resume",
-      "live": "https://briskam.github.io/resume/"
+      "live": "https://briskam.github.io/resume/",
+      "stack": "LaTeX, GitHub Actions, GitHub Pages"
     },
     {
       "title": "Auto GitHub Pages Deploy",
       "description": "LLM-powered web app generator with dual-LLM architecture, automated deployments, and 99.9%+ uptime.",
       "href": "https://github.com/23f3001694/tds-p-1",
-      "live": "https://tds-p-1.onrender.com/"
+      "live": "https://tds-p-1.onrender.com/",
+      "stack": "Python, LLM APIs, GitHub Pages"
     }
   ],
   "skills": {

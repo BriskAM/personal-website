@@ -1,94 +1,95 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.vue';
 import Footer from '../components/Footer.vue';
 import Icon from '../components/Icon.vue';
 import data from '../content/data.json';
+
+const primaryProjects = data.projects.slice(0, 2);
+const supportingProjects = data.projects.slice(2);
 ---
 
 <Layout title={`${data.name} | Backend Developer`}>
 	<div class="page-container">
-		<!-- Hero Section -->
-		<section class="pt-8">
-			<Header client:load />
+		<section class="hero-section">
+			<p class="hero-kicker">Backend Developer · Data Science Student</p>
+			<h1 class="hero-title">{data.name}</h1>
+			<p class="hero-summary">{data.summary}</p>
+			<div class="hero-actions">
+				<a href={data.resumePdfUrl} target="_blank" rel="noopener noreferrer" class="button button-primary">Download Resume</a>
+				<a href="mailto:akshit.mehta.work@gmail.com" class="button">Email</a>
+				<a href="https://github.com/BriskAM" target="_blank" rel="noopener noreferrer" class="button">GitHub</a>
+				<a href="https://www.linkedin.com/in/akshit-mehta2005" target="_blank" rel="noopener noreferrer" class="button">LinkedIn</a>
+			</div>
+			<div class="highlight-grid">
+				{data.highlights.map((item) => (
+					<div class="highlight">
+						<p class="highlight-label">{item.label}</p>
+						<p class="highlight-value">{item.value}</p>
+						<p class="highlight-detail">{item.detail}</p>
+					</div>
+				))}
+			</div>
 		</section>
 
-		<!-- What I'm working on -->
 		<section>
 			<div class="section-grid">
-				<h2 class="section-title">What I'm working on</h2>
+				<h2 class="section-title">Experience</h2>
 				<div class="cards-container">
-					{data.workingOn.map((item) => (
-						<a href={item.href} target="_blank" rel="noopener noreferrer" class={`card card-${item.color} card-hover block`}>
-							<div class="card-header-sm">
-								<Icon name={item.icon} size={20} color="currentColor" client:load />
-								<span class={`card-title text-${item.color}-title`}>{item.title}</span>
-								<span class={`text-sm text-${item.color}-role`}>· {item.role}</span>
+					{data.work.map((item) => (
+						<article class="card card-orange">
+							<div class="card-header">
+								<Icon name="briefcase" size={20} color="currentColor" client:load />
+								<div>
+									<p class="card-title">{item.title} · {item.company}</p>
+									<p class="text-orange-role text-sm">{item.year}</p>
+								</div>
 							</div>
-							<p class={`text-sm text-${item.color}-desc`}>{item.description}</p>
-						</a>
+							<p class="text-orange-desc text-sm">{item.description}</p>
+						</article>
 					))}
 				</div>
 			</div>
 		</section>
 
-		<!-- Current Positions -->
 		<section>
 			<div class="section-grid">
-				<h2 class="section-title">Current Positions</h2>
+				<h2 class="section-title">Featured Projects</h2>
 				<div class="cards-container">
-					{data.positions.map((item) => (
-						<div class={`card card-${item.color}`}>
-							<div class="card-header-sm">
-								<Icon name={item.icon} size={20} color="currentColor" client:load />
-								<span class="card-title">{item.title}</span>
+					{primaryProjects.map((item) => (
+						<article class="card card-violet project-card">
+							<div>
+								<p class="card-title">{item.title}</p>
+								<p class="project-stack">{item.stack}</p>
+								<p class="text-violet-desc text-sm mt-2">{item.description}</p>
 							</div>
-							<p class={`text-sm text-${item.color}-desc`}>{item.organization}</p>
-						</div>
+							<div class="project-actions">
+								<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
+								{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link">Live</a>}
+							</div>
+						</article>
 					))}
 				</div>
 			</div>
 		</section>
 
-		<!-- Education -->
 		<section>
 			<div class="section-grid">
-				<h2 class="section-title">Education</h2>
+				<h2 class="section-title">Skills</h2>
 				<div class="cards-container">
-					{data.education.map((item) => (
-						<div class={`card card-${item.color}`}>
-							<div class="card-header-sm">
-								<Icon name="graduation" size={20} color="currentColor" client:load />
-								<span class="card-title">{item.school}</span>
-							</div>
-							<p class={`text-sm text-${item.color}-desc`}>{item.detail}</p>
-							<p class={`text-sm text-${item.color}-role mt-2`}>{item.meta}</p>
+					<article class="card card-slate">
+						<div class="skill-list">
+							<p class="text-slate-title"><span class="text-slate-desc">Languages:</span> {data.skills.languages}</p>
+							<p class="text-slate-title"><span class="text-slate-desc">Backend & Data:</span> {data.skills.frameworks}</p>
+							<p class="text-slate-title"><span class="text-slate-desc">Tools:</span> {data.skills.tools}</p>
 						</div>
-					))}
+					</article>
 				</div>
 			</div>
 		</section>
 
-		<!-- Resume -->
 		<section>
 			<div class="section-grid">
-				<h2 class="section-title">Resume</h2>
-				<div class="cards-container">
-					<a href="https://briskam.github.io/resume/" target="_blank" rel="noopener noreferrer" class="card card-emerald card-hover block">
-						<div class="card-header-sm">
-							<Icon name="file" size={20} color="currentColor" client:load />
-							<span class="card-title">Latest PDF</span>
-						</div>
-						<p class="text-sm text-emerald-desc">One-page resume with GitHub Actions publishing, version history, and downloadable PDF.</p>
-					</a>
-				</div>
-			</div>
-		</section>
-
-		<!-- Reach out -->
-		<section>
-			<div class="section-grid">
-				<h2 class="section-title">Reach out!</h2>
+				<h2 class="section-title">Resume & Links</h2>
 				<div class="social-cards">
 					{data.social.map((item) => {
 						if (item.icon === 'github') {
@@ -98,7 +99,7 @@ import data from '../content/data.json';
 										<Icon name={item.icon} size={24} color="currentColor" class="mb-2" client:load />
 										<span class={`text-sm text-${item.color}-desc`}>{item.name}</span>
 									</a>
-									<a href="https://github.com/23f3001694" target="_blank" rel="noopener noreferrer" class="github-corner" title="Second GitHub" />
+									<a href="https://github.com/23f3001694" target="_blank" rel="noopener noreferrer" class="github-corner" title="Education GitHub account" />
 								</div>
 							);
 						}
@@ -113,74 +114,76 @@ import data from '../content/data.json';
 			</div>
 		</section>
 
-		<!-- Experience & Projects -->
 		<section>
 			<div class="section-grid">
-				<h2 class="section-title">Experience & Projects</h2>
+				<h2 class="section-title">More Projects</h2>
 				<div class="cards-container">
-					<!-- Work -->
-					<div class="card card-orange">
-						<div class="card-header">
-							<Icon name="briefcase" size={20} color="currentColor" client:load />
-							<span class="card-title">Work</span>
-						</div>
-						<div class="space-y-4">
-							{data.work.map((item) => (
-								<div class="flex justify-between items-start">
-									<div>
-										<p class="text-orange-title font-medium">{item.title} · {item.company}</p>
-										<p class="text-orange-desc text-sm mt-1">{item.description}</p>
-									</div>
-									<span class="text-orange-role text-sm font-mono shrink-0 ml-4">{item.year}</span>
-								</div>
-							))}
-						</div>
-					</div>
-
-					<!-- Projects -->
-					<div class="card card-violet">
-						<div class="card-header">
-							<Icon name="rocket" size={20} color="currentColor" client:load />
-							<span class="card-title">Projects</span>
-						</div>
-						<div class="space-y-4">
-							{data.projects.map((item) => (
-								<div class="hover:bg-white/5 -mx-2 px-2 py-1 transition-colors">
-									<div class="flex justify-between items-start">
-										<div>
-											<p class="text-violet-title font-medium">{item.title}</p>
-											<p class="text-violet-desc text-sm mt-1">{item.description}</p>
-											<div class="flex gap-3 mt-2">
-												<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link">Code ↗</a>
-												{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link">Live ↗</a>}
-											</div>
-										</div>
-									</div>
-								</div>
-							))}
-						</div>
-					</div>
-
-					<!-- Skills & Achievements -->
-					<div class="card card-slate">
-						<div class="card-header">
-							<Icon name="zap" size={20} color="currentColor" client:load />
-							<span class="card-title">Skills & Achievements</span>
-						</div>
-						<div class="space-y-3 text-sm">
-							<p class="text-slate-title"><span class="text-slate-desc">Languages:</span> {data.skills.languages}</p>
-							<p class="text-slate-title"><span class="text-slate-desc">Frameworks:</span> {data.skills.frameworks}</p>
-							<p class="text-slate-title"><span class="text-slate-desc">Tools:</span> {data.skills.tools}</p>
-							<div class="pt-2 border-t border-slate-700/50 mt-3 space-y-2">
-								{data.achievements.map((item) => (
-									<p class="text-slate-300 flex items-center gap-2">
-										<Icon name={item.icon} size={16} color="currentColor" client:load />
-										{item.text}
-									</p>
-								))}
+					{supportingProjects.map((item) => (
+						<article class="card card-blue project-card compact">
+							<div>
+								<p class="card-title">{item.title}</p>
+								<p class="project-stack">{item.stack}</p>
+								<p class="text-blue-desc text-sm mt-2">{item.description}</p>
 							</div>
+							<div class="project-actions">
+								<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link blue">Code</a>
+								{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link blue">Live</a>}
+							</div>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="section-grid">
+				<h2 class="section-title">Education</h2>
+				<div class="cards-container">
+					{data.education.map((item) => (
+						<article class={`card card-${item.color}`}>
+							<div class="card-header-sm">
+								<Icon name="graduation" size={20} color="currentColor" client:load />
+								<span class="card-title">{item.school}</span>
+							</div>
+							<p class={`text-sm text-${item.color}-desc`}>{item.detail}</p>
+							<p class={`text-sm text-${item.color}-role mt-2`}>{item.meta}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="section-grid">
+				<h2 class="section-title">Achievements</h2>
+				<div class="cards-container">
+					<article class="card card-slate">
+						<div class="achievement-list">
+							{data.achievements.map((item) => (
+								<p class="text-slate-300 flex items-center gap-2">
+									<Icon name={item.icon} size={16} color="currentColor" client:load />
+									{item.text}
+								</p>
+							))}
 						</div>
-					</div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="section-grid">
+				<h2 class="section-title">Community</h2>
+				<div class="cards-container">
+					{data.positions.map((item) => (
+						<article class={`card card-${item.color}`}>
+							<div class="card-header-sm">
+								<Icon name={item.icon} size={20} color="currentColor" client:load />
+								<span class="card-title">{item.title}</span>
+							</div>
+							<p class={`text-sm text-${item.color}-desc`}>{item.organization}</p>
+						</article>
+					))}
 				</div>
 			</div>
 		</section>
