@@ -9,7 +9,7 @@
     {
       "label": "Internship",
       "value": "OTET",
-      "detail": "Laravel to Django migration"
+      "detail": "Backend migration support"
     },
     {
       "label": "GitHub",
@@ -84,7 +84,7 @@
     {
       "title": "Backend Developer",
       "company": "OTET Infosystems",
-      "description": "Led Laravel to Django migration, built REST APIs with Django REST Framework, and optimized database queries for 30% faster responses.",
+      "description": "Assisted Laravel to Django migration work, built and updated REST API endpoints with Django REST Framework, and debugged backend issues across models, serializers, and API responses.",
       "year": "2025"
     }
   ],

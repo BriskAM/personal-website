@@ -11,29 +11,71 @@ const cellColor = '#333333'; // Darker cell color for dark mode
 const maxActiveCells = 800; // Hard limit on active cells to prevent clustering
 let ctx: CanvasRenderingContext2D | null = null;
 let animationId: number;
+let resizeFrame: number | null = null;
 let cols = 0;
 let rows = 0;
 let grid: number[][] = [];
 
-const initGrid = () => {
-  if (!canvas.value) return;
-  
-  canvas.value.width = window.innerWidth;
-  canvas.value.height = window.innerHeight;
-  
-  cols = Math.ceil(canvas.value.width / cellSize);
-  rows = Math.ceil(canvas.value.height / cellSize);
+const getViewportSize = () => {
+  const isTouchViewport = window.matchMedia('(pointer: coarse)').matches;
+  const height = isTouchViewport
+    ? Math.max(window.innerHeight, window.screen.height)
+    : window.innerHeight;
 
-  grid = new Array(cols).fill(null).map(() => new Array(rows).fill(0));
+  return {
+    width: window.innerWidth,
+    height,
+  };
+};
 
-  // Seed with random cells
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
+const seedGrid = (nextCols: number, nextRows: number) => {
+  grid = new Array(nextCols).fill(null).map(() => new Array(nextRows).fill(0));
+
+  for (let i = 0; i < nextCols; i++) {
+    for (let j = 0; j < nextRows; j++) {
       if (Math.random() < 0.075) {
         grid[i][j] = 1;
       }
     }
   }
+};
+
+const preserveGrid = (nextCols: number, nextRows: number) => {
+  const nextGrid = new Array(nextCols).fill(null).map(() => new Array(nextRows).fill(0));
+  const copyCols = Math.min(cols, nextCols);
+  const copyRows = Math.min(rows, nextRows);
+
+  for (let i = 0; i < copyCols; i++) {
+    for (let j = 0; j < copyRows; j++) {
+      nextGrid[i][j] = grid[i][j] ?? 0;
+    }
+  }
+
+  grid = nextGrid;
+};
+
+const setCanvasSize = (preserve = false) => {
+  if (!canvas.value) return;
+
+  const { width, height } = getViewportSize();
+  const nextCols = Math.ceil(width / cellSize);
+  const nextRows = Math.ceil(height / cellSize);
+
+  if (preserve && nextCols === cols && nextRows === rows) return;
+
+  canvas.value.width = width;
+  canvas.value.height = height;
+  canvas.value.style.width = `${width}px`;
+  canvas.value.style.height = `${height}px`;
+
+  if (preserve && grid.length > 0) {
+    preserveGrid(nextCols, nextRows);
+  } else {
+    seedGrid(nextCols, nextRows);
+  }
+
+  cols = nextCols;
+  rows = nextRows;
 };
 
 const draw = () => {
@@ -132,14 +174,18 @@ const handleMouseMove = (e: MouseEvent) => {
 };
 
 const handleResize = () => {
-    initGrid();
+  if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => {
+    setCanvasSize(true);
+    resizeFrame = null;
+  });
 };
 
 onMounted(() => {
   if (!canvas.value) return;
   ctx = canvas.value.getContext('2d');
   
-  initGrid();
+  setCanvasSize();
   window.addEventListener('mousemove', handleMouseMove);
   window.addEventListener('resize', handleResize);
   
@@ -162,6 +208,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('mousemove', handleMouseMove);
   window.removeEventListener('resize', handleResize);
+  if (resizeFrame !== null) cancelAnimationFrame(resizeFrame);
   cancelAnimationFrame(animationId);
 });
 </script>
