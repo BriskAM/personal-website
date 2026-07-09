@@ -94,28 +94,36 @@
       "description": "RAG codebase companion that indexes repositories, pull requests, merge descriptions, and diff summaries with AST-aware chunking and streaming chat APIs.",
       "href": "https://github.com/BriskAM/cortex",
       "live": "https://cortex.amehta.space",
-      "stack": "Vue 3, Flask, Celery, Redis, ChromaDB"
+      "stack": "Vue 3, Flask, Celery, Redis, ChromaDB",
+      "image": "/images/projects/cortex-codebase-qa.jpg",
+      "imageAlt": "Cortex answering a repository question with cited code references"
     },
     {
       "title": "LeafSR",
       "description": "Plant leaf super-resolution pipeline using an ESRGAN-lite conditional GAN, RRDB blocks, AMP, EMA checkpointing, Docker packaging, and CI smoke tests.",
       "href": "https://github.com/BriskAM/leafsr",
       "live": "https://briskam.github.io/leafsr",
-      "stack": "PyTorch, TorchVision, GANs, Docker"
+      "stack": "PyTorch, TorchVision, GANs, Docker",
+      "image": "/images/projects/leafsr-sample-comparison.jpg",
+      "imageAlt": "LeafSR comparison of low-resolution input, bicubic baseline, model output, and high-resolution target"
     },
     {
       "title": "BehaveGuard",
       "description": "Continuous biometric authentication system using keystroke rhythm and mouse kinematics with SVM, LSTM, and TCN score fusion.",
       "href": "https://github.com/BriskAM/behave-guard",
       "live": "",
-      "stack": "FastAPI, PyTorch, Next.js, scikit-learn"
+      "stack": "FastAPI, PyTorch, Next.js, scikit-learn",
+      "image": "/images/projects/behaveguard-keyboard-test.jpg",
+      "imageAlt": "BehaveGuard keyboard rhythm capture screen"
     },
     {
       "title": "Comment Toxicity",
       "description": "Four-class toxicity classifier with 66+ engineered features, OOF target encoding, blend optimization, and tuned per-class thresholds.",
       "href": "https://github.com/BriskAM/comment-toxicity",
       "live": "https://briskam.github.io/comment-toxicity/",
-      "stack": "Python, LightGBM, scikit-learn, Docker"
+      "stack": "Python, LightGBM, scikit-learn, Docker",
+      "image": "/images/projects/comment-toxicity-results.jpg",
+      "imageAlt": "Comment Toxicity model comparison chart showing LightGBM results"
     },
     {
       "title": "Keyway",

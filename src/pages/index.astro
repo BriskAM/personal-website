@@ -57,14 +57,19 @@ const supportingProjects = data.projects.slice(2);
 				<div class="cards-container">
 					{primaryProjects.map((item) => (
 						<article class="card card-violet project-card">
-							<div>
-								<p class="card-title">{item.title}</p>
-								<p class="project-stack">{item.stack}</p>
-								<p class="text-violet-desc text-sm mt-2">{item.description}</p>
-							</div>
-							<div class="project-actions">
-								<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
-								{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link">Live</a>}
+							{item.image && (
+								<img src={item.image} alt={item.imageAlt} loading="lazy" class="project-image featured" />
+							)}
+							<div class="project-content">
+								<div>
+									<p class="card-title">{item.title}</p>
+									<p class="project-stack">{item.stack}</p>
+									<p class="text-violet-desc text-sm mt-2">{item.description}</p>
+								</div>
+								<div class="project-actions">
+									<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
+									{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link">Live</a>}
+								</div>
 							</div>
 						</article>
 					))}
@@ -120,14 +125,19 @@ const supportingProjects = data.projects.slice(2);
 				<div class="cards-container">
 					{supportingProjects.map((item) => (
 						<article class="card card-blue project-card compact">
-							<div>
-								<p class="card-title">{item.title}</p>
-								<p class="project-stack">{item.stack}</p>
-								<p class="text-blue-desc text-sm mt-2">{item.description}</p>
-							</div>
-							<div class="project-actions">
-								<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link blue">Code</a>
-								{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link blue">Live</a>}
+							{item.image && (
+								<img src={item.image} alt={item.imageAlt} loading="lazy" class="project-image" />
+							)}
+							<div class="project-content">
+								<div>
+									<p class="card-title">{item.title}</p>
+									<p class="project-stack">{item.stack}</p>
+									<p class="text-blue-desc text-sm mt-2">{item.description}</p>
+								</div>
+								<div class="project-actions">
+									<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link blue">Code</a>
+									{item.live && <a href={item.live} target="_blank" rel="noopener noreferrer" class="project-link blue">Live</a>}
+								</div>
 							</div>
 						</article>
 					))}

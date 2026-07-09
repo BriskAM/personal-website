@@ -219,11 +219,25 @@
 }
 
 .project-card {
-  @apply flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between;
+  @apply flex flex-col gap-4;
 }
 
 .project-card.compact {
   @apply gap-3;
+}
+
+.project-content {
+  @apply flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between;
+}
+
+.project-image {
+  @apply block w-full border border-white/10 bg-black/20 object-cover;
+  aspect-ratio: 16 / 9;
+  object-position: center top;
+}
+
+.project-image.featured {
+  aspect-ratio: 16 / 8.5;
 }
 
 .project-stack {
