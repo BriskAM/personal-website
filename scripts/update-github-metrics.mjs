@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const outputPath = `${root}/src/content/github-metrics.json`;
 const accounts = ["BriskAM", "23f3001694"];
+const contributionLogin = "BriskAM";
 const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
 const headers = {
 	Accept: "application/vnd.github+json",
@@ -30,7 +31,13 @@ const emptyMetrics = {
 		releases: 0
 	},
 	topRepos: [],
-	recentRepos: []
+	recentRepos: [],
+	currentMonth: {
+		login: contributionLogin,
+		label: "",
+		totalContributions: 0,
+		weeks: []
+	}
 };
 
 async function fetchJson(url) {
@@ -55,6 +62,27 @@ async function fetchPages(url, maxPages = 3) {
 		}
 	}
 	return pages;
+}
+
+async function fetchGraphql(query, variables) {
+	if (!token) {
+		throw new Error("GH_TOKEN or GITHUB_TOKEN is required for contribution calendar data");
+	}
+
+	const response = await fetch("https://api.github.com/graphql", {
+		method: "POST",
+		headers: {
+			...headers,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({ query, variables })
+	});
+
+	const body = await response.json();
+	if (!response.ok || body.errors?.length) {
+		throw new Error(body.errors?.[0]?.message || `${response.status} ${response.statusText} for GitHub GraphQL`);
+	}
+	return body.data;
 }
 
 function summarizeEvents(events, cutoff) {
@@ -92,6 +120,83 @@ function summarizeRepos(repos) {
 	};
 }
 
+function contributionLevel(level) {
+	const levels = {
+		NONE: 0,
+		FIRST_QUARTILE: 1,
+		SECOND_QUARTILE: 2,
+		THIRD_QUARTILE: 3,
+		FOURTH_QUARTILE: 4
+	};
+
+	return levels[level] ?? 0;
+}
+
+function currentMonthRange(now = new Date()) {
+	const from = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), 1, 0, 0, 0));
+	const to = now;
+	const label = new Intl.DateTimeFormat("en", {
+		month: "long",
+		year: "numeric",
+		timeZone: "UTC"
+	}).format(from);
+
+	return {
+		from: from.toISOString(),
+		to: to.toISOString(),
+		label
+	};
+}
+
+async function fetchCurrentMonthContributions(fallback) {
+	const range = currentMonthRange();
+	const query = `
+		query CurrentMonthContributions($login: String!, $from: DateTime!, $to: DateTime!) {
+			user(login: $login) {
+				contributionsCollection(from: $from, to: $to) {
+					contributionCalendar {
+						totalContributions
+						weeks {
+							contributionDays {
+								date
+								contributionCount
+								contributionLevel
+								weekday
+							}
+						}
+					}
+				}
+			}
+		}
+	`;
+
+	try {
+		const data = await fetchGraphql(query, {
+			login: contributionLogin,
+			from: range.from,
+			to: range.to
+		});
+
+		const calendar = data.user.contributionsCollection.contributionCalendar;
+		return {
+			login: contributionLogin,
+			label: range.label,
+			totalContributions: calendar.totalContributions,
+			weeks: calendar.weeks.map((week) => ({
+				days: week.contributionDays.map((day) => ({
+					date: day.date,
+					count: day.contributionCount,
+					weekday: day.weekday,
+					level: contributionLevel(day.contributionLevel)
+				}))
+			}))
+		};
+	} catch (error) {
+		console.warn(`Using existing contribution calendar fallback: ${error.message}`);
+		return fallback.currentMonth || emptyMetrics.currentMonth;
+	}
+}
+
 async function loadFallback() {
 	try {
 		return JSON.parse(await readFile(outputPath, "utf8"));
@@ -103,11 +208,13 @@ async function loadFallback() {
 async function main() {
 	const cutoff = new Date();
 	cutoff.setUTCDate(cutoff.getUTCDate() - 30);
+	const fallback = await loadFallback();
 
 	try {
-		const [repoPages, eventPages] = await Promise.all([
+		const [repoPages, eventPages, currentMonth] = await Promise.all([
 			Promise.all(accounts.map((account) => fetchPages(`https://api.github.com/users/${account}/repos?type=owner&sort=updated`, 4))),
-			Promise.all(accounts.map((account) => fetchPages(`https://api.github.com/users/${account}/events/public`, 3)))
+			Promise.all(accounts.map((account) => fetchPages(`https://api.github.com/users/${account}/events/public`, 3))),
+			fetchCurrentMonthContributions(fallback)
 		]);
 
 		const repoSummary = summarizeRepos(repoPages.flat());
@@ -127,14 +234,14 @@ async function main() {
 				releases: eventSummary.releases
 			},
 			topRepos: repoSummary.topRepos,
-			recentRepos: eventSummary.recentRepos
+			recentRepos: eventSummary.recentRepos,
+			currentMonth
 		};
 
 		await mkdir(dirname(outputPath), { recursive: true });
 		await writeFile(outputPath, `${JSON.stringify(metrics, null, 2)}\n`);
 		console.log(`Updated GitHub metrics: ${metrics.summary.events} events across ${metrics.summary.activeRepos} repos`);
 	} catch (error) {
-		const fallback = await loadFallback();
 		await writeFile(outputPath, `${JSON.stringify(fallback, null, 2)}\n`);
 		console.warn(`Using existing GitHub metrics fallback: ${error.message}`);
 	}

@@ -8,6 +8,7 @@ import githubMetrics from '../content/github-metrics.json';
 const primaryProjects = data.projects.slice(0, 2);
 const supportingProjects = data.projects.slice(2);
 const metricSummary = githubMetrics.summary;
+const currentMonth = githubMetrics.currentMonth;
 const metricsUpdated = new Intl.DateTimeFormat('en', {
 	month: 'short',
 	day: 'numeric',
@@ -44,11 +45,42 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 				<div class="cards-container">
 					<article class="card card-emerald github-metrics-card">
 						<div>
-							<p class="card-title">Last {githubMetrics.windowDays} days</p>
+							<p class="card-title">{currentMonth.totalContributions} contributions in {currentMonth.label}</p>
 							<p class="text-emerald-desc text-sm mt-1">
-								Public activity across {githubMetrics.accounts.join(' and ')}. Updated {metricsUpdated}.
+								Daily contribution activity for {currentMonth.login}. Updated {metricsUpdated}.
 							</p>
 						</div>
+						<div class="month-heatmap" aria-label={`${currentMonth.totalContributions} contributions in ${currentMonth.label}`}>
+							<div class="heatmap-labels" aria-hidden="true">
+								<span style="grid-row: 2;">Mon</span>
+								<span style="grid-row: 4;">Wed</span>
+								<span style="grid-row: 6;">Fri</span>
+							</div>
+							<div class="heatmap-weeks" style={`grid-template-columns: repeat(${currentMonth.weeks.length}, minmax(0, 1fr));`}>
+								{currentMonth.weeks.map((week) => (
+									<div class="heatmap-week">
+										{week.days.map((day) => (
+											<span
+												class={`heatmap-cell heatmap-level-${day.level}`}
+												style={`grid-row: ${day.weekday + 1};`}
+												title={`${day.date}: ${day.count} contribution${day.count === 1 ? '' : 's'}`}
+												aria-label={`${day.date}: ${day.count} contribution${day.count === 1 ? '' : 's'}`}
+											/>
+										))}
+									</div>
+								))}
+							</div>
+						</div>
+						<div class="heatmap-legend" aria-hidden="true">
+							<span>Less</span>
+							<span class="heatmap-cell heatmap-level-0"></span>
+							<span class="heatmap-cell heatmap-level-1"></span>
+							<span class="heatmap-cell heatmap-level-2"></span>
+							<span class="heatmap-cell heatmap-level-3"></span>
+							<span class="heatmap-cell heatmap-level-4"></span>
+							<span>More</span>
+						</div>
+						<p class="text-emerald-desc text-sm">Last {githubMetrics.windowDays} days across {githubMetrics.accounts.join(' and ')}.</p>
 						<div class="metric-grid">
 							<div class="metric-tile">
 								<p class="metric-value">{metricSummary.events}</p>

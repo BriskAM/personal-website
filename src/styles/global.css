@@ -265,6 +265,54 @@
   @apply space-y-5;
 }
 
+.month-heatmap {
+  @apply grid grid-cols-[42px_1fr] gap-3 overflow-x-auto border border-emerald-300/15 bg-black/20 p-4;
+}
+
+.heatmap-labels {
+  @apply grid h-[140px] grid-rows-7 text-sm text-emerald-100/70;
+}
+
+.heatmap-labels span {
+  @apply flex items-center;
+}
+
+.heatmap-weeks {
+  @apply grid min-w-36 gap-1;
+}
+
+.heatmap-week {
+  @apply grid h-[140px] grid-rows-7 gap-1;
+}
+
+.heatmap-cell {
+  @apply block size-4 border border-black/20;
+}
+
+.heatmap-level-0 {
+  @apply bg-emerald-950/60;
+}
+
+.heatmap-level-1 {
+  @apply bg-emerald-800;
+}
+
+.heatmap-level-2 {
+  @apply bg-emerald-600;
+}
+
+.heatmap-level-3 {
+  @apply bg-emerald-400;
+}
+
+.heatmap-level-4 {
+  @apply bg-green-300;
+}
+
+.heatmap-legend {
+  @apply flex items-center justify-end gap-1 text-sm text-emerald-100/70;
+}
+
 .metric-grid {
   @apply grid grid-cols-2 gap-px overflow-hidden border border-emerald-300/15 bg-emerald-300/15 sm:grid-cols-3;
 }
