@@ -69,7 +69,7 @@
     },
     {
       "name": "Resume",
-      "href": "https://briskam.github.io/resume/",
+      "href": "/resume",
       "icon": "file",
       "color": "amber"
     },

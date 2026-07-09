@@ -3,9 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.vue';
 import Icon from '../components/Icon.vue';
 import data from '../content/data.json';
+import githubMetrics from '../content/github-metrics.json';
 
 const primaryProjects = data.projects.slice(0, 2);
 const supportingProjects = data.projects.slice(2);
+const metricSummary = githubMetrics.summary;
+const metricsUpdated = new Intl.DateTimeFormat('en', {
+	month: 'short',
+	day: 'numeric',
+	year: 'numeric'
+}).format(new Date(githubMetrics.generatedAt));
 ---
 
 <Layout title={`${data.name} | Backend Developer`}>
@@ -15,7 +22,7 @@ const supportingProjects = data.projects.slice(2);
 			<h1 class="hero-title">{data.name}</h1>
 			<p class="hero-summary">{data.summary}</p>
 			<div class="hero-actions">
-				<a href={data.resumePdfUrl} target="_blank" rel="noopener noreferrer" class="button button-primary">Download Resume</a>
+				<a href="/resume" target="_blank" rel="noopener noreferrer" class="button button-primary">Download Resume</a>
 				<a href="mailto:akshit.mehta.work@gmail.com" class="button">Email</a>
 				<a href="https://github.com/BriskAM" target="_blank" rel="noopener noreferrer" class="button">GitHub</a>
 				<a href="https://www.linkedin.com/in/akshit-mehta2005" target="_blank" rel="noopener noreferrer" class="button">LinkedIn</a>
@@ -28,6 +35,53 @@ const supportingProjects = data.projects.slice(2);
 						<p class="highlight-detail">{item.detail}</p>
 					</div>
 				))}
+			</div>
+		</section>
+
+		<section>
+			<div class="section-grid">
+				<h2 class="section-title">GitHub Activity</h2>
+				<div class="cards-container">
+					<article class="card card-emerald github-metrics-card">
+						<div>
+							<p class="card-title">Last {githubMetrics.windowDays} days</p>
+							<p class="text-emerald-desc text-sm mt-1">
+								Public activity across {githubMetrics.accounts.join(' and ')}. Updated {metricsUpdated}.
+							</p>
+						</div>
+						<div class="metric-grid">
+							<div class="metric-tile">
+								<p class="metric-value">{metricSummary.events}</p>
+								<p class="metric-label">public events</p>
+							</div>
+							<div class="metric-tile">
+								<p class="metric-value">{metricSummary.activeRepos}</p>
+								<p class="metric-label">active repos</p>
+							</div>
+							<div class="metric-tile">
+								<p class="metric-value">{metricSummary.pushes}</p>
+								<p class="metric-label">push events</p>
+							</div>
+							<div class="metric-tile">
+								<p class="metric-value">{metricSummary.pullRequests}</p>
+								<p class="metric-label">PR events</p>
+							</div>
+							<div class="metric-tile">
+								<p class="metric-value">{metricSummary.publicRepos}</p>
+								<p class="metric-label">public repos</p>
+							</div>
+							<div class="metric-tile">
+								<p class="metric-value">{metricSummary.totalStars}</p>
+								<p class="metric-label">stars</p>
+							</div>
+						</div>
+						<div class="repo-strip" aria-label="Recently active repositories">
+							{githubMetrics.recentRepos.slice(0, 6).map((repo) => (
+								<span>{repo}</span>
+							))}
+						</div>
+					</article>
+				</div>
 			</div>
 		</section>
 

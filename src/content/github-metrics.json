@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-07-09T13:23:24.140Z",
+  "windowDays": 30,
+  "accounts": [
+    "BriskAM",
+    "23f3001694"
+  ],
+  "summary": {
+    "publicRepos": 52,
+    "totalStars": 101,
+    "events": 81,
+    "activeRepos": 17,
+    "pushes": 63,
+    "pullRequests": 1,
+    "issues": 0,
+    "releases": 0
+  },
+  "topRepos": [
+    {
+      "name": "SC-E",
+      "stars": 56,
+      "url": "https://github.com/BriskAM/SC-E",
+      "updatedAt": "2026-07-03T17:27:56Z"
+    },
+    {
+      "name": "MAD-1-L",
+      "stars": 42,
+      "url": "https://github.com/BriskAM/MAD-1-L",
+      "updatedAt": "2026-07-05T17:59:19Z"
+    },
+    {
+      "name": "behave-guard",
+      "stars": 1,
+      "url": "https://github.com/BriskAM/behave-guard",
+      "updatedAt": "2026-06-29T13:00:40Z"
+    },
+    {
+      "name": "clip-rewrite",
+      "stars": 1,
+      "url": "https://github.com/BriskAM/clip-rewrite",
+      "updatedAt": "2026-05-15T11:19:42Z"
+    },
+    {
+      "name": "quiz-master",
+      "stars": 1,
+      "url": "https://github.com/23f3001694/quiz-master",
+      "updatedAt": "2025-09-08T17:08:55Z"
+    }
+  ],
+  "recentRepos": [
+    "23f3001694/dl-genai-project-t22026",
+    "BriskAM/BriskAM",
+    "BriskAM/MAD-1-L",
+    "BriskAM/behave-guard",
+    "BriskAM/cortex",
+    "BriskAM/extensions",
+    "BriskAM/fmhy-raycast",
+    "BriskAM/keyway"
+  ]
+}

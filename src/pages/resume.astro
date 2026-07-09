@@ -1,0 +1,23 @@
+---
+import data from "../content/data.json";
+
+const resumeUrl = data.resumePdfUrl || data.resumeUrl;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="robots" content="noindex, follow" />
+		<meta http-equiv="refresh" content={`0; url=${resumeUrl}`} />
+		<link rel="canonical" href={resumeUrl} />
+		<title>Redirecting to Akshit Mehta Resume</title>
+		<script is:inline define:vars={{ resumeUrl }}>
+			window.location.replace(resumeUrl);
+		</script>
+	</head>
+	<body>
+		<a href={resumeUrl}>Resume</a>
+	</body>
+</html>

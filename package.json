@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/update-github-metrics.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

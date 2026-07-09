@@ -260,6 +260,35 @@
   @apply space-y-3 text-sm;
 }
 
+/* GitHub Metrics */
+.github-metrics-card {
+  @apply space-y-5;
+}
+
+.metric-grid {
+  @apply grid grid-cols-2 gap-px overflow-hidden border border-emerald-300/15 bg-emerald-300/15 sm:grid-cols-3;
+}
+
+.metric-tile {
+  @apply min-h-24 bg-emerald-950/80 p-4;
+}
+
+.metric-value {
+  @apply text-2xl font-semibold text-white;
+}
+
+.metric-label {
+  @apply mt-1 text-xs font-medium uppercase text-emerald-200/60;
+}
+
+.repo-strip {
+  @apply flex flex-wrap gap-2;
+}
+
+.repo-strip span {
+  @apply border border-emerald-200/15 bg-black/20 px-2.5 py-1 text-xs text-emerald-100/70;
+}
+
 /* GitHub Cut Corner */
 .github-card-cut {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);

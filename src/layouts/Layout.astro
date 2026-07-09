@@ -11,6 +11,9 @@ interface Props {
 const { title } = Astro.props;
 const description = "Akshit Mehta is a backend-focused software developer and data science student building APIs, ML pipelines, RAG tools, automation systems, and deployment workflows.";
 const canonicalUrl = "https://amehta.space/";
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN ?? "amehta.space";
+const plausibleSrc = import.meta.env.PUBLIC_PLAUSIBLE_SRC ?? "https://plausible.io/js/script.outbound-links.js";
+const analyticsEnabled = plausibleDomain !== "disabled";
 const sameAs = [
 	"https://github.com/BriskAM",
 	"https://github.com/23f3001694",
@@ -92,6 +95,9 @@ const structuredData = {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		{analyticsEnabled && (
+			<script defer data-domain={plausibleDomain} src={plausibleSrc}></script>
+		)}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
