@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T13:41:06.245Z",
+  "generatedAt": "2026-07-09T13:48:58.656Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,9 +8,9 @@
   "summary": {
     "publicRepos": 52,
     "totalStars": 101,
-    "events": 82,
+    "events": 83,
     "activeRepos": 17,
-    "pushes": 64,
+    "pushes": 65,
     "pullRequests": 1,
     "issues": 0,
     "releases": 0
@@ -56,74 +56,5 @@
     "BriskAM/extensions",
     "BriskAM/fmhy-raycast",
     "BriskAM/keyway"
-  ],
-  "currentMonth": {
-    "login": "BriskAM",
-    "label": "July 2026",
-    "totalContributions": 19,
-    "weeks": [
-      {
-        "days": [
-          {
-            "date": "2026-07-01",
-            "count": 0,
-            "weekday": 3,
-            "level": 0
-          },
-          {
-            "date": "2026-07-02",
-            "count": 0,
-            "weekday": 4,
-            "level": 0
-          },
-          {
-            "date": "2026-07-03",
-            "count": 0,
-            "weekday": 5,
-            "level": 0
-          },
-          {
-            "date": "2026-07-04",
-            "count": 0,
-            "weekday": 6,
-            "level": 0
-          }
-        ]
-      },
-      {
-        "days": [
-          {
-            "date": "2026-07-05",
-            "count": 1,
-            "weekday": 0,
-            "level": 1
-          },
-          {
-            "date": "2026-07-06",
-            "count": 2,
-            "weekday": 1,
-            "level": 1
-          },
-          {
-            "date": "2026-07-07",
-            "count": 5,
-            "weekday": 2,
-            "level": 2
-          },
-          {
-            "date": "2026-07-08",
-            "count": 1,
-            "weekday": 3,
-            "level": 1
-          },
-          {
-            "date": "2026-07-09",
-            "count": 10,
-            "weekday": 4,
-            "level": 4
-          }
-        ]
-      }
-    ]
-  }
+  ]
 }
