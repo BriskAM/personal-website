@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T03:53:16.854Z",
+  "generatedAt": "2026-07-22T03:55:02.287Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,8 +8,8 @@
   "summary": {
     "publicRepos": 54,
     "totalStars": 101,
-    "events": 101,
-    "activeRepos": 17,
+    "events": 100,
+    "activeRepos": 16,
     "pushes": 82,
     "pullRequests": 1,
     "issues": 0,
