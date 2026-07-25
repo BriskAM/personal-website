@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T03:51:34.334Z",
+  "generatedAt": "2026-07-25T03:45:29.004Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,9 +8,9 @@
   "summary": {
     "publicRepos": 54,
     "totalStars": 101,
-    "events": 99,
-    "activeRepos": 15,
-    "pushes": 82,
+    "events": 94,
+    "activeRepos": 14,
+    "pushes": 77,
     "pullRequests": 1,
     "issues": 0,
     "releases": 0
@@ -51,10 +51,10 @@
     "BriskAM/BriskAM",
     "BriskAM/MAD-1-L",
     "BriskAM/behave-guard",
-    "BriskAM/cortex",
     "BriskAM/extensions",
     "BriskAM/fmhy-raycast",
     "BriskAM/frick",
-    "BriskAM/homebrew-frick"
+    "BriskAM/homebrew-frick",
+    "BriskAM/personal-website"
   ]
 }
