@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T03:39:39.210Z",
+  "generatedAt": "2026-07-31T03:58:18.618Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -7,20 +7,20 @@
   ],
   "summary": {
     "publicRepos": 54,
-    "totalStars": 103,
-    "events": 88,
-    "activeRepos": 13,
-    "pushes": 72,
-    "pullRequests": 3,
+    "totalStars": 104,
+    "events": 62,
+    "activeRepos": 9,
+    "pushes": 51,
+    "pullRequests": 2,
     "issues": 0,
     "releases": 0
   },
   "topRepos": [
     {
       "name": "SC-E",
-      "stars": 57,
+      "stars": 58,
       "url": "https://github.com/BriskAM/SC-E",
-      "updatedAt": "2026-07-26T17:05:41Z"
+      "updatedAt": "2026-07-30T07:13:58Z"
     },
     {
       "name": "MAD-1-L",
@@ -48,13 +48,13 @@
     }
   ],
   "recentRepos": [
-    "BriskAM/BriskAM",
     "BriskAM/MAD-1-L",
     "BriskAM/behave-guard",
-    "BriskAM/extensions",
-    "BriskAM/fmhy-raycast",
     "BriskAM/frick",
     "BriskAM/homebrew-frick",
-    "BriskAM/personal-website"
+    "BriskAM/personal-website",
+    "BriskAM/resume",
+    "NuvioMedia/NuvioDesktop",
+    "mkgstf/behaveguard"
   ]
 }
