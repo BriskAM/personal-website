@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T03:58:22.925Z",
+  "generatedAt": "2026-08-02T04:02:18.202Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -9,8 +9,8 @@
     "publicRepos": 54,
     "totalStars": 104,
     "events": 62,
-    "activeRepos": 9,
-    "pushes": 51,
+    "activeRepos": 8,
+    "pushes": 52,
     "pullRequests": 2,
     "issues": 0,
     "releases": 0
@@ -54,7 +54,7 @@
     "BriskAM/homebrew-frick",
     "BriskAM/personal-website",
     "BriskAM/resume",
-    "NuvioMedia/NuvioDesktop",
-    "mkgstf/behaveguard"
+    "mkgstf/behaveguard",
+    "raycast/extensions"
   ]
 }
