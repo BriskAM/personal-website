@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-04T03:45:28.788Z",
+  "generatedAt": "2026-08-05T03:41:41.756Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
     "23f3001694"
   ],
   "summary": {
-    "publicRepos": 54,
-    "totalStars": 104,
-    "events": 62,
+    "publicRepos": 55,
+    "totalStars": 103,
+    "events": 73,
     "activeRepos": 8,
-    "pushes": 52,
+    "pushes": 64,
     "pullRequests": 2,
     "issues": 0,
     "releases": 0
@@ -18,9 +18,9 @@
   "topRepos": [
     {
       "name": "SC-E",
-      "stars": 58,
+      "stars": 57,
       "url": "https://github.com/BriskAM/SC-E",
-      "updatedAt": "2026-07-30T07:13:58Z"
+      "updatedAt": "2026-08-04T08:26:25Z"
     },
     {
       "name": "MAD-1-L",
@@ -48,12 +48,12 @@
     }
   ],
   "recentRepos": [
-    "BriskAM/MAD-1-L",
     "BriskAM/behave-guard",
     "BriskAM/frick",
     "BriskAM/homebrew-frick",
     "BriskAM/personal-website",
     "BriskAM/resume",
+    "BriskAM/taria",
     "mkgstf/behaveguard",
     "raycast/extensions"
   ]
