@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-05T03:41:41.756Z",
+  "generatedAt": "2026-08-06T03:47:34.486Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,9 +8,9 @@
   "summary": {
     "publicRepos": 55,
     "totalStars": 103,
-    "events": 73,
-    "activeRepos": 8,
-    "pushes": 64,
+    "events": 71,
+    "activeRepos": 7,
+    "pushes": 62,
     "pullRequests": 2,
     "issues": 0,
     "releases": 0
@@ -48,7 +48,6 @@
     }
   ],
   "recentRepos": [
-    "BriskAM/behave-guard",
     "BriskAM/frick",
     "BriskAM/homebrew-frick",
     "BriskAM/personal-website",
