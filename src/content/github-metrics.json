@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T03:47:34.486Z",
+  "generatedAt": "2026-08-07T03:24:08.952Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,9 +8,9 @@
   "summary": {
     "publicRepos": 55,
     "totalStars": 103,
-    "events": 71,
-    "activeRepos": 7,
-    "pushes": 62,
+    "events": 61,
+    "activeRepos": 5,
+    "pushes": 52,
     "pullRequests": 2,
     "issues": 0,
     "releases": 0
@@ -50,8 +50,6 @@
   "recentRepos": [
     "BriskAM/frick",
     "BriskAM/homebrew-frick",
-    "BriskAM/personal-website",
-    "BriskAM/resume",
     "BriskAM/taria",
     "mkgstf/behaveguard",
     "raycast/extensions"
