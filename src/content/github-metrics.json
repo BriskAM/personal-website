@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T02:33:45.235Z",
+  "generatedAt": "2026-08-10T02:39:44.385Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -7,7 +7,7 @@
   ],
   "summary": {
     "publicRepos": 55,
-    "totalStars": 103,
+    "totalStars": 102,
     "events": 61,
     "activeRepos": 5,
     "pushes": 52,
@@ -18,9 +18,9 @@
   "topRepos": [
     {
       "name": "SC-E",
-      "stars": 57,
+      "stars": 56,
       "url": "https://github.com/BriskAM/SC-E",
-      "updatedAt": "2026-08-04T08:26:25Z"
+      "updatedAt": "2026-08-09T17:32:37Z"
     },
     {
       "name": "MAD-1-L",
