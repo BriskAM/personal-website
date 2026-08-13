@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-08-12T03:03:01.140Z",
+  "generatedAt": "2026-08-13T03:05:57.154Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
     "23f3001694"
   ],
   "summary": {
-    "publicRepos": 56,
+    "publicRepos": 55,
     "totalStars": 102,
-    "events": 69,
+    "events": 48,
     "activeRepos": 6,
-    "pushes": 59,
+    "pushes": 41,
     "pullRequests": 2,
     "issues": 0,
     "releases": 0
