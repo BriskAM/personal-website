@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-15T01:54:50.329Z",
+  "generatedAt": "2026-08-16T02:02:45.034Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,9 +8,9 @@
   "summary": {
     "publicRepos": 55,
     "totalStars": 102,
-    "events": 46,
-    "activeRepos": 6,
-    "pushes": 40,
+    "events": 37,
+    "activeRepos": 4,
+    "pushes": 31,
     "pullRequests": 2,
     "issues": 0,
     "releases": 0
@@ -48,8 +48,6 @@
     }
   ],
   "recentRepos": [
-    "BriskAM/frick",
-    "BriskAM/homebrew-frick",
     "BriskAM/my-vicinae-scripts",
     "BriskAM/taria",
     "mkgstf/behaveguard",
