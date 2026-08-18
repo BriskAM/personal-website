@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T01:59:19.819Z",
+  "generatedAt": "2026-08-18T01:56:17.881Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -7,8 +7,8 @@
   ],
   "summary": {
     "publicRepos": 55,
-    "totalStars": 102,
-    "events": 37,
+    "totalStars": 104,
+    "events": 36,
     "activeRepos": 4,
     "pushes": 31,
     "pullRequests": 2,
@@ -18,15 +18,15 @@
   "topRepos": [
     {
       "name": "SC-E",
-      "stars": 56,
+      "stars": 57,
       "url": "https://github.com/BriskAM/SC-E",
-      "updatedAt": "2026-08-09T17:32:37Z"
+      "updatedAt": "2026-08-17T12:38:10Z"
     },
     {
       "name": "MAD-1-L",
-      "stars": 43,
+      "stars": 44,
       "url": "https://github.com/BriskAM/MAD-1-L",
-      "updatedAt": "2026-07-26T16:03:39Z"
+      "updatedAt": "2026-08-17T12:38:06Z"
     },
     {
       "name": "behave-guard",
