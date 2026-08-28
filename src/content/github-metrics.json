@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T10:03:23.284Z",
+  "generatedAt": "2026-08-28T11:34:47.279Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,10 +8,10 @@
   "summary": {
     "publicRepos": 55,
     "totalStars": 104,
-    "events": 37,
-    "activeRepos": 5,
-    "pushes": 31,
-    "pullRequests": 2,
+    "events": 24,
+    "activeRepos": 4,
+    "pushes": 21,
+    "pullRequests": 0,
     "issues": 0,
     "releases": 0
   },
@@ -51,7 +51,6 @@
     "BriskAM/my-vicinae-scripts",
     "BriskAM/taria",
     "mkgstf/behaveguard",
-    "predict-woo/simbi",
-    "raycast/extensions"
+    "predict-woo/simbi"
   ]
 }
