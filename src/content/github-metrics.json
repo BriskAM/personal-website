@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-31T05:50:34.430Z",
+  "generatedAt": "2026-09-01T05:23:10.012Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -7,10 +7,10 @@
   ],
   "summary": {
     "publicRepos": 55,
-    "totalStars": 105,
-    "events": 24,
-    "activeRepos": 4,
-    "pushes": 21,
+    "totalStars": 106,
+    "events": 23,
+    "activeRepos": 3,
+    "pushes": 20,
     "pullRequests": 0,
     "issues": 0,
     "releases": 0
@@ -18,9 +18,9 @@
   "topRepos": [
     {
       "name": "SC-E",
-      "stars": 58,
+      "stars": 59,
       "url": "https://github.com/BriskAM/SC-E",
-      "updatedAt": "2026-08-30T10:10:39Z"
+      "updatedAt": "2026-08-31T16:46:47Z"
     },
     {
       "name": "MAD-1-L",
@@ -50,7 +50,6 @@
   "recentRepos": [
     "BriskAM/my-vicinae-scripts",
     "BriskAM/taria",
-    "mkgstf/behaveguard",
     "predict-woo/simbi"
   ]
 }
