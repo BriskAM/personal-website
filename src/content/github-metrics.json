@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T04:47:35.940Z",
+  "generatedAt": "2026-09-04T04:52:01.191Z",
   "windowDays": 30,
   "accounts": [
     "BriskAM",
@@ -8,9 +8,9 @@
   "summary": {
     "publicRepos": 55,
     "totalStars": 106,
-    "events": 23,
-    "activeRepos": 3,
-    "pushes": 20,
+    "events": 9,
+    "activeRepos": 2,
+    "pushes": 7,
     "pullRequests": 0,
     "issues": 0,
     "releases": 0
@@ -49,7 +49,6 @@
   ],
   "recentRepos": [
     "BriskAM/my-vicinae-scripts",
-    "BriskAM/taria",
     "predict-woo/simbi"
   ]
 }
