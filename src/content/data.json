@@ -9,7 +9,7 @@
     {
       "label": "Internship",
       "value": "OTET",
-      "detail": "Backend migration support"
+      "detail": "Backend intern"
     },
     {
       "label": "GitHub",
@@ -90,7 +90,18 @@
   ],
   "projects": [
     {
+      "title": "BehaveGuard",
+      "category": ["backend", "ml-ai", "systems"],
+      "description": "Continuous biometric authentication engine analyzing keystroke dynamics and mouse kinematics with BiLSTM + TCN neural fusion, Redis Streams async retraining, FastAPI, PostgreSQL, and Next.js.",
+      "href": "https://github.com/mkgstf/behaveguard",
+      "live": "https://behave.amehta.space",
+      "stack": "FastAPI, PyTorch (BiLSTM + TCN), Redis Streams, Next.js, PostgreSQL",
+      "image": "/images/projects/behaveguard-keyboard-test.jpg",
+      "imageAlt": "BehaveGuard keystroke dynamics capture and authentication interface"
+    },
+    {
       "title": "Cortex",
+      "category": ["backend", "ml-ai"],
       "description": "RAG codebase companion that indexes repositories, pull requests, merge descriptions, and diff summaries with AST-aware chunking and streaming chat APIs.",
       "href": "https://github.com/BriskAM/cortex",
       "live": "https://cortex.amehta.space",
@@ -99,7 +110,16 @@
       "imageAlt": "Cortex answering a repository question with cited code references"
     },
     {
+      "title": "frick",
+      "category": ["systems", "backend"],
+      "description": "Sub-5ms terminal autocorrect CLI written in Go. Uses LLM-powered context awareness, directory introspection, and a color-coded safety evaluation tier to prevent destructive commands.",
+      "href": "https://github.com/BriskAM/frick",
+      "live": "https://github.com/BriskAM/homebrew-frick",
+      "stack": "Go, Shell Integration, Gemini/Groq APIs, Homebrew"
+    },
+    {
       "title": "LeafSR",
+      "category": ["ml-ai", "systems"],
       "description": "Plant leaf super-resolution pipeline using an ESRGAN-lite conditional GAN, RRDB blocks, AMP, EMA checkpointing, Docker packaging, and CI smoke tests.",
       "href": "https://github.com/BriskAM/leafsr",
       "live": "https://briskam.github.io/leafsr",
@@ -108,16 +128,8 @@
       "imageAlt": "LeafSR comparison of low-resolution input, bicubic baseline, model output, and high-resolution target"
     },
     {
-      "title": "BehaveGuard",
-      "description": "Continuous biometric authentication system using keystroke rhythm and mouse kinematics with SVM, LSTM, and TCN score fusion.",
-      "href": "https://github.com/BriskAM/behave-guard",
-      "live": "",
-      "stack": "FastAPI, PyTorch, Next.js, scikit-learn",
-      "image": "/images/projects/behaveguard-keyboard-test.jpg",
-      "imageAlt": "BehaveGuard keyboard rhythm capture screen"
-    },
-    {
       "title": "Comment Toxicity",
+      "category": ["ml-ai"],
       "description": "Four-class toxicity classifier with 66+ engineered features, OOF target encoding, blend optimization, and tuned per-class thresholds.",
       "href": "https://github.com/BriskAM/comment-toxicity",
       "live": "https://briskam.github.io/comment-toxicity/",
@@ -127,6 +139,7 @@
     },
     {
       "title": "Keyway",
+      "category": ["backend", "systems"],
       "description": "Self-hosted secrets vault with PBKDF2-HMAC-SHA256, Redis-backed session-only key handling, PostgreSQL storage, and Docker deployment.",
       "href": "https://github.com/BriskAM/keyway",
       "live": "",
@@ -134,6 +147,7 @@
     },
     {
       "title": "TDS Quiz Solver",
+      "category": ["backend", "ml-ai", "systems"],
       "description": "LLM agent orchestration project with browser extraction, sandboxed code execution, API endpoints, and Dockerized deployment.",
       "href": "https://github.com/23f3001694/llm-tools",
       "live": "https://amehtaaaaaa-llm-tools.hf.space/solve",

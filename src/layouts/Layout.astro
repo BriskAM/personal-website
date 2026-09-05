@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import GameOfLife from "../components/GameOfLife.vue";
-import CustomCursor from "../components/CustomCursor.vue";
+import CommandPalette from "../components/CommandPalette.vue";
 import data from "../content/data.json";
 
 interface Props {
@@ -78,16 +78,16 @@ const structuredData = {
 		<meta name="keywords" content="Akshit Mehta, backend developer, Python developer, FastAPI, Flask, Django REST Framework, PyTorch, RAG, data science, IIT Madras, MAIT, GitHub Actions, Docker, machine learning" />
 		<link rel="canonical" href={canonicalUrl} />
 		<meta property="og:type" content="profile" />
-		<meta property="og:title" content="Akshit Mehta | Backend Developer" />
+		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalUrl} />
 		<meta property="og:image" content="https://amehta.space/og-image.svg" />
-		<meta property="og:image:alt" content="Akshit Mehta - Backend Developer and Data Science Student" />
+		<meta property="og:image:alt" content={data.name} />
 		<meta property="og:site_name" content="Akshit Mehta" />
 		<meta property="profile:first_name" content="Akshit" />
 		<meta property="profile:last_name" content="Mehta" />
 		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Akshit Mehta | Backend Developer" />
+		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content="https://amehta.space/og-image.svg" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -101,19 +101,351 @@ const structuredData = {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<script is:inline>
+			(() => {
+				const storedTheme = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+				const userTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+				if (userTheme === 'light') {
+					document.documentElement.classList.add('light');
+				} else {
+					document.documentElement.classList.remove('light');
+				}
+			})();
+		</script>
 	</head>
-	<body class="bg-[#0a0a0a] text-gray-200 font-sans antialiased selection:bg-pink-500/30 selection:text-pink-200 relative min-h-screen overflow-x-hidden">
-		<CustomCursor client:only="vue" />
+	<body class="bg-[#0a0a0a] text-gray-200 font-sans antialiased selection:bg-pink-500/30 selection:text-pink-200 relative min-h-screen overflow-x-hidden transition-colors duration-300">
         <GameOfLife client:only="vue" />
-		<a 
-			href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" 
-			target="_blank" 
-			rel="noopener noreferrer"
-			class="fixed top-4 right-4 z-50 text-sm text-gray-500 hover:text-gray-300 transition-colors"
+		<CommandPalette client:only="vue" />
+		<header class="site-header fixed top-0 inset-x-0 z-50 pointer-events-none backdrop-blur-md bg-[#0a0a0a]/80 border-b border-white/[0.06] transition-colors duration-300" aria-label="Site navigation">
+			<div class="max-w-4xl mx-auto px-4 sm:px-8 md:px-12 h-14 flex items-center justify-between pointer-events-auto text-sm select-none">
+				<nav class="flex items-center gap-2.5 sm:gap-3 overflow-x-auto no-scrollbar py-1 pr-3 max-w-[calc(100vw-190px)] sm:max-w-none [mask-image:linear-gradient(to_right,black_calc(100%-24px),transparent_100%)] sm:[mask-image:none]" aria-label="Sections">
+					<a href="#about" class="text-gray-400 hover:text-white transition-colors top-nav-link whitespace-nowrap">about</a>
+					<span class="text-gray-600/70 top-nav-sep" aria-hidden="true">·</span>
+					<a href="#experience" class="text-gray-400 hover:text-white transition-colors top-nav-link whitespace-nowrap">experience</a>
+					<span class="text-gray-600/70 top-nav-sep" aria-hidden="true">·</span>
+					<a href="#projects" class="text-gray-400 hover:text-white transition-colors top-nav-link whitespace-nowrap">projects</a>
+					<span class="text-gray-600/70 top-nav-sep" aria-hidden="true">·</span>
+					<a href="#skills" class="text-gray-400 hover:text-white transition-colors top-nav-link whitespace-nowrap">skills</a>
+					<span class="text-gray-600/70 top-nav-sep" aria-hidden="true">·</span>
+					<a href="#education" class="text-gray-400 hover:text-white transition-colors top-nav-link whitespace-nowrap">education</a>
+				</nav>
+				<div class="flex items-center gap-2.5 sm:gap-3 shrink-0 ml-3 py-1">
+					<button 
+						type="button" 
+						id="palette-trigger" 
+						class="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-mono border border-white/15 hover:border-white/30 text-gray-400 hover:text-white rounded-none transition-colors cursor-pointer top-nav-link"
+						aria-label="Open Command Palette (Cmd+K)"
+						title="Command Palette (Cmd+K)"
+					>
+						<span>⌘K</span>
+					</button>
+					<span class="hidden sm:inline text-gray-600/70 select-none top-nav-sep" aria-hidden="true">·</span>
+					<button 
+						id="theme-toggle" 
+						type="button" 
+						class="text-gray-400 hover:text-white transition-colors focus:outline-none cursor-pointer top-nav-link whitespace-nowrap"
+						aria-label="Toggle theme"
+					>
+						<span id="theme-toggle-label">Light</span>
+					</button>
+					<span class="text-gray-600/70 select-none top-nav-sep" aria-hidden="true">·</span>
+					<a 
+						href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" 
+						target="_blank" 
+						rel="noopener noreferrer" 
+						class="text-gray-400 hover:text-white transition-colors top-nav-link whitespace-nowrap"
+					>
+						What's this?
+					</a>
+				</div>
+			</div>
+		</header>
+		<script is:inline>
+			(() => {
+				const themeToggle = document.getElementById('theme-toggle');
+				const themeLabel = document.getElementById('theme-toggle-label');
+				const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+				const updateUI = (isLight) => {
+					if (themeLabel) {
+						themeLabel.textContent = isLight ? 'Dark' : 'Light';
+					}
+					if (themeToggle) {
+						themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+					}
+					if (themeColorMeta) {
+						themeColorMeta.setAttribute('content', isLight ? '#faf9f6' : '#0a0a0a');
+					}
+				};
+
+				const isLight = document.documentElement.classList.contains('light');
+				updateUI(isLight);
+
+				if (themeToggle) {
+					themeToggle.addEventListener('click', () => {
+						const willBeLight = !document.documentElement.classList.contains('light');
+						if (willBeLight) {
+							document.documentElement.classList.add('light');
+							localStorage.setItem('theme', 'light');
+						} else {
+							document.documentElement.classList.remove('light');
+							localStorage.setItem('theme', 'dark');
+						}
+						updateUI(willBeLight);
+						window.dispatchEvent(new CustomEvent('theme-change', { detail: { theme: willBeLight ? 'light' : 'dark' } }));
+					});
+				}
+
+				// Active section scroll spy & smooth click
+				const sectionNavLinks = document.querySelectorAll('nav[aria-label="Sections"] a[href^="#"]');
+				const sections = Array.from(sectionNavLinks)
+					.map(a => document.getElementById(a.getAttribute('href').slice(1)))
+					.filter(Boolean);
+
+				sectionNavLinks.forEach(link => {
+					link.addEventListener('click', (e) => {
+						const href = link.getAttribute('href');
+						if (href && href.startsWith('#')) {
+							const target = document.querySelector(href);
+							if (target) {
+								e.preventDefault();
+								target.classList.add('in-view');
+								target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+								history.pushState(null, '', href);
+							}
+						}
+					});
+				});
+
+				// Section entrance animations
+				document.documentElement.classList.add('js-ready');
+				const allSections = document.querySelectorAll('.page-container > section');
+				if ('IntersectionObserver' in window && allSections.length > 0) {
+					const revealObserver = new IntersectionObserver((entries) => {
+						entries.forEach(entry => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('in-view');
+							}
+						});
+					}, {
+						threshold: 0.05,
+						rootMargin: '0px 0px -40px 0px'
+					});
+					allSections.forEach(s => revealObserver.observe(s));
+
+					let activeId = null;
+					const spyObserver = new IntersectionObserver((entries) => {
+						const visible = entries.filter(e => e.isIntersecting);
+						if (visible.length > 0) {
+							visible.sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+							const currentId = visible[0].target.id;
+							if (currentId !== activeId) {
+								activeId = currentId;
+								sectionNavLinks.forEach(link => {
+									if (link.getAttribute('href') === `#${currentId}`) {
+										link.classList.add('active');
+										link.scrollIntoView({ inline: 'nearest', behavior: 'smooth', block: 'nearest' });
+									} else {
+										link.classList.remove('active');
+									}
+								});
+							}
+						}
+					}, {
+						rootMargin: '-10% 0px -70% 0px',
+						threshold: [0, 0.2]
+					});
+
+					sections.forEach(s => spyObserver.observe(s));
+				} else {
+					allSections.forEach(s => s.classList.add('in-view'));
+				}
+
+				// Web Audio API minimal sound synthesizer
+				const SoundManager = (() => {
+					let ctx = null;
+					let enabled = typeof localStorage !== 'undefined' ? localStorage.getItem('sound-enabled') === 'true' : false;
+
+					const init = () => {
+						if (!ctx && typeof window !== 'undefined') {
+							const AudioCtx = window.AudioContext || window.webkitAudioContext;
+							if (AudioCtx) ctx = new AudioCtx();
+						}
+						if (ctx && ctx.state === 'suspended') ctx.resume();
+					};
+
+					const playClick = () => {
+						if (!enabled) return;
+						init();
+						if (!ctx) return;
+						const osc = ctx.createOscillator();
+						const gain = ctx.createGain();
+						osc.type = 'sine';
+						const now = ctx.currentTime;
+						osc.frequency.setValueAtTime(1000, now);
+						osc.frequency.exponentialRampToValueAtTime(320, now + 0.02);
+						gain.gain.setValueAtTime(0.05, now);
+						gain.gain.exponentialRampToValueAtTime(0.001, now + 0.02);
+						osc.connect(gain);
+						gain.connect(ctx.destination);
+						osc.start(now);
+						osc.stop(now + 0.025);
+					};
+
+					const playSuccess = () => {
+						if (!enabled) return;
+						init();
+						if (!ctx) return;
+						const now = ctx.currentTime;
+						const osc1 = ctx.createOscillator();
+						const gain1 = ctx.createGain();
+						osc1.type = 'sine';
+						osc1.frequency.setValueAtTime(520, now);
+						gain1.gain.setValueAtTime(0.05, now);
+						gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+						osc1.connect(gain1);
+						gain1.connect(ctx.destination);
+						osc1.start(now);
+						osc1.stop(now + 0.07);
+
+						const osc2 = ctx.createOscillator();
+						const gain2 = ctx.createGain();
+						osc2.type = 'sine';
+						osc2.frequency.setValueAtTime(740, now + 0.06);
+						gain2.gain.setValueAtTime(0.05, now + 0.06);
+						gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+						osc2.connect(gain2);
+						gain2.connect(ctx.destination);
+						osc2.start(now + 0.06);
+						osc2.stop(now + 0.15);
+					};
+
+					const toggle = () => {
+						enabled = !enabled;
+						if (typeof localStorage !== 'undefined') {
+							localStorage.setItem('sound-enabled', String(enabled));
+						}
+						if (enabled) {
+							init();
+							playSuccess();
+						}
+						return enabled;
+					};
+
+					return { isEnabled: () => enabled, toggle, playClick, playSuccess };
+				})();
+
+				window.soundManager = SoundManager;
+				window.playSoundClick = () => SoundManager.playClick();
+				window.playSoundSuccess = () => SoundManager.playSuccess();
+
+				// Global micro-interaction sound on button & link clicks
+				document.addEventListener('click', (e) => {
+					const btn = e.target.closest('button, .button, .top-nav-link, .filter-tab');
+					if (btn) window.playSoundClick();
+				}, { passive: true });
+
+				// Palette trigger button
+				const paletteTrigger = document.getElementById('palette-trigger');
+				if (paletteTrigger) {
+					paletteTrigger.addEventListener('click', () => {
+						window.dispatchEvent(new CustomEvent('open-command-palette'));
+					});
+				}
+
+				// Global Toast
+				window.showToast = (message) => {
+					const toast = document.getElementById('site-toast');
+					const toastMsg = document.getElementById('site-toast-message');
+					if (!toast || !toastMsg) return;
+					toastMsg.textContent = message;
+					toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
+					toast.classList.add('opacity-100', 'translate-y-0');
+					if (window.__toastTimeout) clearTimeout(window.__toastTimeout);
+					window.__toastTimeout = setTimeout(() => {
+						toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
+						toast.classList.remove('opacity-100', 'translate-y-0');
+					}, 2400);
+				};
+
+				// Game of Life Floating Toolbar
+				const initGolToolbar = () => {
+					const golToggle = document.getElementById('gol-ctrl-toggle');
+					const golGun = document.getElementById('gol-ctrl-gun');
+					const golPulsar = document.getElementById('gol-ctrl-pulsar');
+					const golRandom = document.getElementById('gol-ctrl-random');
+					const golClear = document.getElementById('gol-ctrl-clear');
+					const golMordor = document.getElementById('gol-ctrl-mordor');
+
+					window.addEventListener('game-of-life-status', (e) => {
+						if (golToggle) golToggle.textContent = e.detail.paused ? 'play' : 'pause';
+					});
+
+					if (golToggle) {
+						golToggle.addEventListener('click', () => {
+							window.dispatchEvent(new CustomEvent('toggle-game-of-life'));
+						});
+					}
+					if (golGun) {
+						golGun.addEventListener('click', () => {
+							window.dispatchEvent(new CustomEvent('spawn-glider-gun'));
+							window.showToast('Glider Gun spawned');
+						});
+					}
+					if (golPulsar) {
+						golPulsar.addEventListener('click', () => {
+							window.dispatchEvent(new CustomEvent('spawn-pulsar'));
+							window.showToast('Pulsar oscillator spawned');
+						});
+					}
+					if (golRandom) {
+						golRandom.addEventListener('click', () => {
+							window.dispatchEvent(new CustomEvent('randomize-game-of-life'));
+							window.showToast('Grid randomized');
+						});
+					}
+					if (golClear) {
+						golClear.addEventListener('click', () => {
+							window.dispatchEvent(new CustomEvent('clear-game-of-life'));
+							window.showToast('Grid cleared');
+						});
+					}
+					if (golMordor) {
+						golMordor.addEventListener('click', () => {
+							window.dispatchEvent(new CustomEvent('spawn-mordor'));
+						});
+					}
+				};
+
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', initGolToolbar);
+				} else {
+					initGolToolbar();
+				}
+			})();
+		</script>
+		<!-- Game of Life Controls -->
+		<div 
+			id="gol-controls" 
+			class="fixed bottom-6 left-6 z-[110] hidden sm:inline-flex items-center border border-white/15 bg-[#0a0a0a]/90 backdrop-blur-md text-[11px] font-mono select-none"
+			aria-label="Game of Life Controls"
 		>
-			What's this?
-		</a>
-		<div class="min-h-screen w-full px-4 sm:px-8 md:px-16 lg:px-24 py-8 sm:py-12 md:py-20 relative z-10">
+			<button type="button" id="gol-ctrl-toggle" class="px-2.5 py-1 text-gray-400 hover:text-white hover:bg-white/10 transition-colors border-r border-white/10 cursor-pointer" title="Play/Pause simulation (Space)">pause</button>
+			<button type="button" id="gol-ctrl-gun" class="px-2.5 py-1 text-gray-400 hover:text-white hover:bg-white/10 transition-colors border-r border-white/10 cursor-pointer" title="Spawn Gosper Glider Gun (G)">gun</button>
+			<button type="button" id="gol-ctrl-pulsar" class="px-2.5 py-1 text-gray-400 hover:text-white hover:bg-white/10 transition-colors border-r border-white/10 cursor-pointer" title="Spawn Pulsar Oscillator (P)">pulsar</button>
+			<button type="button" id="gol-ctrl-random" class="px-2.5 py-1 text-gray-400 hover:text-white hover:bg-white/10 transition-colors border-r border-white/10 cursor-pointer" title="Randomize Grid (R)">random</button>
+			<button type="button" id="gol-ctrl-clear" class="px-2.5 py-1 text-gray-400 hover:text-white hover:bg-white/10 transition-colors border-r border-white/10 cursor-pointer" title="Clear Canvas (C)">clear</button>
+			<button type="button" id="gol-ctrl-mordor" class="px-2.5 py-1 text-amber-300/80 hover:text-amber-200 hover:bg-white/10 transition-colors cursor-pointer" title="LotR Easter Egg: Frodo, Sam & Eye of Sauron over Mordor (M)">mordor</button>
+		</div>
+		<div 
+			id="site-toast" 
+			class="fixed bottom-6 right-6 z-[120] pointer-events-none opacity-0 translate-y-3 transition-all duration-300 text-xs font-medium px-4 py-2.5 rounded-none border shadow-xl backdrop-blur-md site-toast"
+			role="status"
+			aria-live="polite"
+		>
+			<span id="site-toast-message">Copied!</span>
+		</div>
+		<div class="site-main-content min-h-screen w-full px-4 sm:px-8 md:px-16 lg:px-24 pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-28 md:pb-20 relative z-10">
 			<slot />
 		</div>
 	</body>

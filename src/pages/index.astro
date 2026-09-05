@@ -3,27 +3,23 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.vue';
 import Icon from '../components/Icon.vue';
 import data from '../content/data.json';
-import githubMetrics from '../content/github-metrics.json';
 
-const primaryProjects = data.projects.slice(0, 2);
-const supportingProjects = data.projects.slice(2);
-const metricSummary = githubMetrics.summary;
-const metricsUpdated = new Intl.DateTimeFormat('en', {
-	month: 'short',
-	day: 'numeric',
-	year: 'numeric'
-}).format(new Date(githubMetrics.generatedAt));
+const primaryProjects = data.projects.slice(0, 3);
+const supportingProjects = data.projects.slice(3);
 ---
 
-<Layout title={`${data.name} | Backend Developer`}>
+<Layout title={data.name}>
 	<div class="page-container">
-		<section class="hero-section">
+		<section id="about" class="hero-section scroll-mt-28">
 			<p class="hero-kicker">Backend Developer · Data Science Student</p>
 			<h1 class="hero-title">{data.name}</h1>
 			<p class="hero-summary">{data.summary}</p>
 			<div class="hero-actions">
 				<a href="/resume" target="_blank" rel="noopener noreferrer" class="button button-primary">Download Resume</a>
-				<a href="mailto:akshit.mehta.work@gmail.com" class="button">Email</a>
+				<button type="button" id="hero-copy-email" class="button cursor-pointer inline-flex items-center gap-1.5" title="Copy email address to clipboard">
+					<Icon name="email" size={16} color="currentColor" client:load />
+					<span>Copy Email</span>
+				</button>
 				<a href="https://github.com/BriskAM" target="_blank" rel="noopener noreferrer" class="button">GitHub</a>
 				<a href="https://www.linkedin.com/in/akshit-mehta2005" target="_blank" rel="noopener noreferrer" class="button">LinkedIn</a>
 			</div>
@@ -38,54 +34,7 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 			</div>
 		</section>
 
-		<section>
-			<div class="section-grid">
-				<h2 class="section-title">GitHub Activity</h2>
-				<div class="cards-container">
-					<article class="card card-emerald github-metrics-card">
-						<div>
-							<p class="card-title">GitHub Activity</p>
-							<p class="text-emerald-desc text-sm mt-1">
-								Live summary across {githubMetrics.accounts.join(' and ')}. Updated {metricsUpdated}.
-							</p>
-						</div>
-						<div class="metric-grid">
-							<div class="metric-tile">
-								<p class="metric-value">{metricSummary.events}</p>
-								<p class="metric-label">public events</p>
-							</div>
-							<div class="metric-tile">
-								<p class="metric-value">{metricSummary.activeRepos}</p>
-								<p class="metric-label">active repos</p>
-							</div>
-							<div class="metric-tile">
-								<p class="metric-value">{metricSummary.pushes}</p>
-								<p class="metric-label">push events</p>
-							</div>
-							<div class="metric-tile">
-								<p class="metric-value">{metricSummary.pullRequests}</p>
-								<p class="metric-label">PR events</p>
-							</div>
-							<div class="metric-tile">
-								<p class="metric-value">{metricSummary.publicRepos}</p>
-								<p class="metric-label">public repos</p>
-							</div>
-							<div class="metric-tile">
-								<p class="metric-value">{metricSummary.totalStars}</p>
-								<p class="metric-label">stars</p>
-							</div>
-						</div>
-						<div class="repo-strip" aria-label="Recently active repositories">
-							{githubMetrics.recentRepos.slice(0, 6).map((repo) => (
-								<span>{repo}</span>
-							))}
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
-
-		<section>
+		<section id="experience" class="scroll-mt-28">
 			<div class="section-grid">
 				<h2 class="section-title">Experience</h2>
 				<div class="cards-container">
@@ -105,12 +54,18 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 			</div>
 		</section>
 
-		<section>
+		<section id="projects" class="scroll-mt-28">
 			<div class="section-grid">
 				<h2 class="section-title">Featured Projects</h2>
 				<div class="cards-container">
+					<div class="project-filters flex items-center gap-2 mb-2 overflow-x-auto no-scrollbar py-1">
+						<button type="button" class="filter-tab active" data-filter="all">All</button>
+						<button type="button" class="filter-tab" data-filter="backend">Backend & APIs</button>
+						<button type="button" class="filter-tab" data-filter="ml-ai">ML & AI</button>
+						<button type="button" class="filter-tab" data-filter="systems">Systems & Tools</button>
+					</div>
 					{primaryProjects.map((item) => (
-						<article class="card card-violet project-card">
+						<article class="card card-violet project-card" data-categories={item.category ? item.category.join(' ') : 'backend'}>
 							{item.image && (
 								<img src={item.image} alt={item.imageAlt} loading="lazy" class="project-image featured" />
 							)}
@@ -119,6 +74,21 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 									<p class="card-title">{item.title}</p>
 									<p class="project-stack">{item.stack}</p>
 									<p class="text-violet-desc text-sm mt-2">{item.description}</p>
+									{item.title === 'frick' && (
+										<button 
+											type="button" 
+											class="frick-install-btn mt-3 inline-flex items-center gap-2 border border-white/15 bg-black/40 hover:bg-black/60 px-3 py-1.5 text-xs font-mono text-gray-300 hover:text-white transition-colors cursor-pointer text-left select-all"
+											data-copy="brew tap BriskAM/frick && brew install frick"
+											title="Click to copy Homebrew install command"
+										>
+											<span class="text-emerald-400 select-none">$</span>
+											<span>brew tap BriskAM/frick && brew install frick</span>
+											<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="opacity-50 shrink-0 ml-1">
+												<rect width="14" height="14" x="8" y="8" rx="0" />
+												<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+											</svg>
+										</button>
+									)}
 								</div>
 								<div class="project-actions">
 									<a href={item.href} target="_blank" rel="noopener noreferrer" class="project-link">Code</a>
@@ -131,7 +101,7 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 			</div>
 		</section>
 
-		<section>
+		<section id="skills" class="scroll-mt-28">
 			<div class="section-grid">
 				<h2 class="section-title">Skills</h2>
 				<div class="cards-container">
@@ -146,39 +116,12 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 			</div>
 		</section>
 
-		<section>
-			<div class="section-grid">
-				<h2 class="section-title">Resume & Links</h2>
-				<div class="social-cards">
-					{data.social.map((item) => {
-						if (item.icon === 'github') {
-							return (
-								<div class="relative w-24 h-20 sm:w-28 sm:h-24 group">
-									<a href={item.href} target="_blank" rel="noopener noreferrer" class={`social-card card-${item.color} github-card-cut`}>
-										<Icon name={item.icon} size={24} color="currentColor" class="mb-2" client:load />
-										<span class={`text-sm text-${item.color}-desc`}>{item.name}</span>
-									</a>
-									<a href="https://github.com/23f3001694" target="_blank" rel="noopener noreferrer" class="github-corner" title="Education GitHub account" />
-								</div>
-							);
-						}
-						return (
-							<a href={item.href} target={item.href.startsWith('mailto') ? undefined : '_blank'} rel={item.href.startsWith('mailto') ? undefined : 'noopener noreferrer'} class={`social-card card-${item.color}`}>
-								<Icon name={item.icon} size={24} color="currentColor" class="mb-2" client:load />
-								<span class={`text-sm text-${item.color}-desc`}>{item.name}</span>
-							</a>
-						);
-					})}
-				</div>
-			</div>
-		</section>
-
-		<section>
+		<section id="more-projects" class="scroll-mt-28">
 			<div class="section-grid">
 				<h2 class="section-title">More Projects</h2>
 				<div class="cards-container">
 					{supportingProjects.map((item) => (
-						<article class="card card-blue project-card compact">
+						<article class="card card-blue project-card compact" data-categories={item.category ? item.category.join(' ') : 'backend'}>
 							{item.image && (
 								<img src={item.image} alt={item.imageAlt} loading="lazy" class="project-image" />
 							)}
@@ -199,7 +142,7 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 			</div>
 		</section>
 
-		<section>
+		<section id="education" class="scroll-mt-28">
 			<div class="section-grid">
 				<h2 class="section-title">Education</h2>
 				<div class="cards-container">
@@ -254,4 +197,57 @@ const metricsUpdated = new Intl.DateTimeFormat('en', {
 
 		<Footer />
 	</div>
+	<script is:inline>
+		(() => {
+			const email = 'akshit.mehta.work@gmail.com';
+			const copyEmail = () => {
+				navigator.clipboard.writeText(email).then(() => {
+					if (window.playSoundSuccess) window.playSoundSuccess();
+					if (window.showToast) {
+						window.showToast(`Email copied to clipboard! (${email})`);
+					}
+				});
+			};
+
+			const heroBtn = document.getElementById('hero-copy-email');
+			if (heroBtn) heroBtn.addEventListener('click', copyEmail);
+
+			// Frick install command copy
+			const frickBtn = document.querySelector('.frick-install-btn');
+			if (frickBtn) {
+				frickBtn.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const cmd = frickBtn.getAttribute('data-copy') || 'brew tap BriskAM/frick && brew install frick';
+					navigator.clipboard.writeText(cmd).then(() => {
+						if (window.playSoundSuccess) window.playSoundSuccess();
+						if (window.showToast) {
+							window.showToast(`Copied install command! (${cmd})`);
+						}
+					});
+				});
+			}
+
+			// Project Filter Tabs
+			const filterButtons = document.querySelectorAll('.filter-tab');
+			const projectCards = document.querySelectorAll('.project-card');
+
+			filterButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					const filter = btn.getAttribute('data-filter');
+					filterButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+
+					projectCards.forEach(card => {
+						const categories = (card.getAttribute('data-categories') || '').split(' ');
+						if (filter === 'all' || categories.includes(filter)) {
+							card.style.display = '';
+							card.classList.add('in-view');
+						} else {
+							card.style.display = 'none';
+						}
+					});
+				});
+			});
+		})();
+	</script>
 </Layout>

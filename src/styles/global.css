@@ -1,13 +1,102 @@
 @import "tailwindcss";
 
-/* Custom Cursor - hide default on desktop */
-.custom-cursor-enabled {
-  cursor: none;
+html {
+  scroll-behavior: smooth;
 }
 
-.custom-cursor-enabled a,
-.custom-cursor-enabled button {
-  cursor: none;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.top-nav-link {
+  display: inline-block;
+  transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.top-nav-link.active {
+  color: #ffffff;
+  font-weight: 500;
+  transform: scale(1.06);
+}
+
+html.light .top-nav-link.active {
+  color: #1c1917;
+  font-weight: 500;
+  transform: scale(1.06);
+}
+
+/* ==========================================================================
+   Smooth Section Scroll & Entrance Animations
+   ========================================================================== */
+
+html.js-ready .page-container > section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js-ready .page-container > section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js-ready .page-container > section .cards-container > .card {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.js-ready .page-container > section.in-view .cards-container > .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js-ready .page-container > section.in-view .cards-container > .card:nth-child(1) { transition-delay: 0.06s; }
+html.js-ready .page-container > section.in-view .cards-container > .card:nth-child(2) { transition-delay: 0.12s; }
+html.js-ready .page-container > section.in-view .cards-container > .card:nth-child(3) { transition-delay: 0.18s; }
+html.js-ready .page-container > section.in-view .cards-container > .card:nth-child(4) { transition-delay: 0.24s; }
+
+html.js-ready .hero-section .highlight {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.js-ready .hero-section.in-view .highlight {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html.js-ready .hero-section.in-view .highlight:nth-child(1) { transition-delay: 0.08s; }
+html.js-ready .hero-section.in-view .highlight:nth-child(2) { transition-delay: 0.16s; }
+html.js-ready .hero-section.in-view .highlight:nth-child(3) { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.js-ready .page-container > section,
+  html.js-ready .page-container > section.in-view,
+  html.js-ready .page-container > section .cards-container > .card,
+  html.js-ready .page-container > section.in-view .cards-container > .card,
+  html.js-ready .hero-section .highlight,
+  html.js-ready .hero-section.in-view .highlight,
+  .top-nav-link {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* Layout */
@@ -20,7 +109,7 @@
 }
 
 .section-title {
-  @apply text-lg md:text-xl font-medium text-white md:sticky md:top-8 mb-4 md:mb-0;
+  @apply text-lg md:text-xl font-medium text-white md:sticky md:top-20 mb-4 md:mb-0;
 }
 
 .cards-container {
@@ -241,11 +330,37 @@
 }
 
 .project-stack {
-  @apply mt-1 text-xs font-medium text-violet-300/75;
+  @apply mt-1 text-xs font-mono font-medium tracking-tight text-violet-300/75;
 }
 
 .card-blue .project-stack {
   @apply text-blue-200/80;
+}
+
+/* Project Filter Tabs */
+.filter-tab {
+  @apply px-3 py-1 text-xs font-medium border border-white/10 text-gray-400 hover:text-gray-200 hover:border-white/20 transition-colors cursor-pointer;
+}
+
+.filter-tab.active {
+  @apply border-emerald-400/60 bg-white/10 text-white font-semibold;
+}
+
+html.light .filter-tab {
+  @apply border-stone-200 text-stone-600 hover:text-stone-900 hover:border-stone-300 bg-stone-100/60;
+}
+
+html.light .filter-tab.active {
+  @apply border-emerald-600/40 bg-emerald-600 text-white;
+}
+
+/* Site Toast Notification */
+.site-toast {
+  @apply bg-stone-900 border-white/20 text-gray-100;
+}
+
+html.light .site-toast {
+  @apply bg-white border-stone-200 text-stone-900;
 }
 
 .project-actions {
@@ -297,3 +412,338 @@
 .github-corner {
   @apply absolute bottom-0 right-0 w-0 h-0 border-l-[24px] border-l-transparent border-b-[24px] border-b-gray-600 hover:border-b-gray-400 transition-colors;
 }
+
+/* ==========================================================================
+   Light Mode Theme
+   Soft, warm editorial aesthetic with pastel tinted cards
+   ========================================================================== */
+
+html.light {
+  color-scheme: light;
+}
+
+html.light body {
+  background-color: #faf9f6;
+  color: #1c1917;
+}
+
+html.light body {
+  @apply selection:bg-pink-300/40 selection:text-pink-900;
+}
+
+html.light header {
+  background-color: rgba(250, 249, 246, 0.85);
+  border-bottom-color: rgba(229, 226, 218, 0.8);
+}
+
+html.light #gol-controls {
+  background-color: rgba(250, 249, 246, 0.9);
+  border-color: rgba(229, 226, 218, 0.9);
+}
+
+html.light #gol-controls button {
+  color: #78716c;
+  border-right-color: rgba(229, 226, 218, 0.9);
+}
+
+html.light #gol-controls button:hover {
+  color: #1c1917;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Top Nav Links & Separator */
+html.light .top-nav-link {
+  @apply text-stone-500 hover:text-stone-800;
+}
+
+html.light .top-nav-sep {
+  @apply text-stone-300;
+}
+
+/* Titles & Summary */
+html.light .section-title {
+  @apply text-stone-900;
+}
+
+html.light .hero-kicker {
+  @apply text-emerald-700 font-semibold;
+}
+
+html.light .hero-title {
+  @apply text-stone-900;
+}
+
+html.light .hero-summary {
+  @apply text-stone-600;
+}
+
+/* Buttons */
+html.light .button {
+  @apply border-stone-300/80 bg-stone-200/50 text-stone-800 hover:bg-stone-200/90;
+}
+
+html.light .button-primary {
+  @apply border-emerald-600/30 bg-emerald-600 text-white hover:bg-emerald-700;
+}
+
+/* Highlights */
+html.light .highlight {
+  @apply border-stone-200/90 bg-white/75 shadow-xs;
+}
+
+html.light .highlight-label {
+  @apply text-stone-500;
+}
+
+html.light .highlight-value {
+  @apply text-stone-900;
+}
+
+html.light .highlight-detail {
+  @apply text-stone-600;
+}
+
+/* Card Titles */
+html.light .card-title {
+  @apply text-stone-900;
+}
+
+/* Color Variants - Emerald */
+html.light .card-emerald {
+  @apply from-emerald-50 to-teal-50/80 border border-emerald-200/70 shadow-xs;
+}
+html.light .text-emerald-title {
+  @apply text-emerald-950;
+}
+html.light .text-emerald-desc {
+  @apply text-emerald-900/85;
+}
+html.light .text-emerald-role {
+  @apply text-emerald-700;
+}
+
+/* Color Variants - Orange */
+html.light .card-orange {
+  @apply from-orange-50 to-amber-50/80 border border-orange-200/70 shadow-xs;
+}
+html.light .text-orange-title {
+  @apply text-stone-900;
+}
+html.light .text-orange-desc {
+  @apply text-stone-700;
+}
+html.light .text-orange-role {
+  @apply text-orange-700;
+}
+
+/* Color Variants - Violet */
+html.light .card-violet {
+  @apply from-violet-50 to-purple-50/80 border border-violet-200/70 shadow-xs;
+}
+html.light .text-violet-title {
+  @apply text-stone-900;
+}
+html.light .text-violet-desc {
+  @apply text-stone-700;
+}
+html.light .text-violet-role {
+  @apply text-violet-700;
+}
+
+/* Color Variants - Blue */
+html.light .card-blue {
+  @apply from-blue-50 to-sky-50/80 border border-blue-200/70 shadow-xs;
+}
+html.light .text-blue-title {
+  @apply text-stone-900;
+}
+html.light .text-blue-desc {
+  @apply text-stone-700;
+}
+html.light .text-blue-role {
+  @apply text-blue-700;
+}
+
+/* Color Variants - Amber */
+html.light .card-amber {
+  @apply from-amber-50 to-yellow-50/80 border border-amber-200/70 shadow-xs;
+}
+html.light .text-amber-title {
+  @apply text-stone-900;
+}
+html.light .text-amber-desc {
+  @apply text-amber-900/85;
+}
+html.light .text-amber-role {
+  @apply text-amber-700;
+}
+
+/* Color Variants - Slate */
+html.light .card-slate {
+  @apply from-stone-50 to-stone-100/70 border border-stone-200/80 shadow-xs;
+}
+html.light .text-slate-title {
+  @apply text-stone-800;
+}
+html.light .text-slate-desc {
+  @apply text-stone-500;
+}
+
+/* Color Variants - Gray */
+html.light .card-gray {
+  @apply from-stone-50 to-stone-100/70 border border-stone-200/80 shadow-xs;
+}
+html.light .text-gray-title {
+  @apply text-stone-900;
+}
+html.light .text-gray-desc {
+  @apply text-stone-600;
+}
+
+/* Color Variants - Sky */
+html.light .card-sky {
+  @apply from-sky-50 to-blue-50/80 border border-sky-200/70 shadow-xs;
+}
+html.light .text-sky-title {
+  @apply text-stone-900;
+}
+html.light .text-sky-desc {
+  @apply text-sky-900/85;
+}
+
+/* Project Cards & Images */
+html.light .project-link {
+  @apply text-violet-700 hover:text-violet-900;
+}
+
+html.light .project-link.blue {
+  @apply text-blue-700 hover:text-blue-900;
+}
+
+html.light .project-stack {
+  @apply text-violet-800/80 font-medium;
+}
+
+html.light .card-blue .project-stack {
+  @apply text-blue-800/80;
+}
+
+html.light .project-image {
+  @apply border-stone-200 bg-stone-100;
+}
+
+/* Social Cards */
+html.light .social-card.card-emerald { @apply text-emerald-900; }
+html.light .social-card.card-blue { @apply text-blue-900; }
+html.light .social-card.card-violet { @apply text-violet-900; }
+html.light .social-card.card-orange { @apply text-orange-900; }
+html.light .social-card.card-amber { @apply text-amber-900; }
+html.light .social-card.card-slate { @apply text-stone-800; }
+html.light .social-card.card-gray { @apply text-stone-800; }
+html.light .social-card.card-sky { @apply text-sky-900; }
+
+/* Achievement list */
+html.light .achievement-list p {
+  @apply text-stone-700;
+}
+
+/* GitHub Metrics */
+html.light .metric-grid {
+  @apply border-emerald-200 bg-emerald-200/50;
+}
+
+html.light .metric-tile {
+  @apply bg-emerald-50/95;
+}
+
+html.light .metric-value {
+  @apply text-emerald-950;
+}
+
+html.light .metric-label {
+  @apply text-emerald-700;
+}
+
+html.light .repo-strip span {
+  @apply border-emerald-200/80 bg-white/80 text-emerald-900;
+}
+
+/* GitHub Cut Corner */
+html.light .github-corner {
+  @apply border-b-stone-300 hover:border-b-stone-400;
+}
+
+/* Footer */
+html.light footer {
+  @apply border-stone-200 text-stone-500;
+}
+html.light footer a {
+  @apply hover:text-stone-900;
+}
+
+/* Command Palette Thin Scrollbar */
+.palette-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  overscroll-behavior: contain;
+}
+
+.palette-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.palette-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.palette-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0px;
+}
+
+.palette-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+html.light .palette-scrollbar {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+html.light .palette-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+html.light .palette-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   Mordor Mode: Atmospheric foreground muting & translucency
+   ========================================================================== */
+
+/* Main page layout & header transition to ghosted translucency */
+html.mordor-mode .site-main-content,
+html.mordor-mode .site-header {
+  opacity: 0.06 !important;
+  filter: grayscale(80%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  user-select: none !important;
+}
+
+.site-main-content,
+.site-header {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Keep controls & toast perfectly legible and accessible */
+html.mordor-mode #gol-controls,
+html.mordor-mode #site-toast,
+html.mordor-mode .command-palette {
+  opacity: 1 !important;
+  filter: none !important;
+  pointer-events: auto !important;
+}
+
+
+
