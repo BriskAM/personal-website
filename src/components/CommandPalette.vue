@@ -137,6 +137,13 @@ const commands: Command[] = [
     action: () => scrollToSection('about')
   },
   {
+    id: 'education',
+    title: 'Jump to Education',
+    category: 'navigation',
+    icon: 'graduation',
+    action: () => scrollToSection('education')
+  },
+  {
     id: 'experience',
     title: 'Jump to Experience',
     category: 'navigation',
@@ -156,13 +163,6 @@ const commands: Command[] = [
     category: 'navigation',
     icon: 'zap',
     action: () => scrollToSection('skills')
-  },
-  {
-    id: 'education',
-    title: 'Jump to Education',
-    category: 'navigation',
-    icon: 'graduation',
-    action: () => scrollToSection('education')
   },
   {
     id: 'copy-email',

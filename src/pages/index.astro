@@ -34,6 +34,24 @@ const supportingProjects = data.projects.slice(3);
 			</div>
 		</section>
 
+		<section id="education" class="scroll-mt-28">
+			<div class="section-grid">
+				<h2 class="section-title">Education</h2>
+				<div class="cards-container">
+					{data.education.map((item) => (
+						<article class={`card card-${item.color}`}>
+							<div class="card-header-sm">
+								<Icon name="graduation" size={20} color="currentColor" client:load />
+								<span class="card-title">{item.school}</span>
+							</div>
+							<p class={`text-sm text-${item.color}-desc`}>{item.detail}</p>
+							<p class={`text-sm text-${item.color}-role mt-2`}>{item.meta}</p>
+						</article>
+					))}
+				</div>
+			</div>
+		</section>
+
 		<section id="experience" class="scroll-mt-28">
 			<div class="section-grid">
 				<h2 class="section-title">Experience</h2>
@@ -142,23 +160,6 @@ const supportingProjects = data.projects.slice(3);
 			</div>
 		</section>
 
-		<section id="education" class="scroll-mt-28">
-			<div class="section-grid">
-				<h2 class="section-title">Education</h2>
-				<div class="cards-container">
-					{data.education.map((item) => (
-						<article class={`card card-${item.color}`}>
-							<div class="card-header-sm">
-								<Icon name="graduation" size={20} color="currentColor" client:load />
-								<span class="card-title">{item.school}</span>
-							</div>
-							<p class={`text-sm text-${item.color}-desc`}>{item.detail}</p>
-							<p class={`text-sm text-${item.color}-role mt-2`}>{item.meta}</p>
-						</article>
-					))}
-				</div>
-			</div>
-		</section>
 
 		<section>
 			<div class="section-grid">
