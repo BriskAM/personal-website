@@ -295,5 +295,5 @@
 }
 
 .github-corner {
-  @apply absolute bottom-0 right-0 w-0 h-0 border-l-[20px] border-l-transparent border-b-[20px] border-b-gray-600 hover:border-b-gray-400 transition-colors;
+  @apply absolute bottom-0 right-0 w-0 h-0 border-l-[24px] border-l-transparent border-b-[24px] border-b-gray-600 hover:border-b-gray-400 transition-colors;
 }

@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="canvas" class="fixed inset-0 -z-10 w-full h-full pointer-events-none"></canvas>
+  <canvas ref="canvas" class="fixed inset-0 z-0 w-full h-full pointer-events-none" aria-hidden="true"></canvas>
 </template>
 
 <script setup lang="ts">
